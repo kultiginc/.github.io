@@ -1,0 +1,208 @@
+html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waters of Yersu - Official Page</title>
+    <style>
+        /* Base Page Setup & Epic Yersu Background */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('yersu-bg.jpg'); /* Just name your background image file this */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        /* The Main Layout Shield Wrapper */
+        .wrapper {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* 1. Header Box with Pure Black Background and Glowing Neon Teal Trim */
+        .header-panel {
+            background-color: #000000;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+            border-radius: 4px;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* High-End Cinematic Title Formatting */
+        .header-left h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        .header-left p {
+            margin: 0;
+            font-size: 1rem;
+            color: #8fa3a6;
+            letter-spacing: 1px;
+        }
+
+        /* Runic Medallion Framing */
+        .medallion-box img {
+            width: clamp(100px, 15vw, 160px);
+            height: auto;
+            display: block;
+        }
+
+        /* 2. Seamless Row of Compact Storefront Navigation Icons */
+        .icon-bar {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .icon-link {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #8fa3a6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #8fa3a6;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .icon-link:hover {
+            border-color: #00f2ff;
+            color: #00f2ff;
+            box-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 3. Pure Black Video Panel with Side-by-Side Tight Responsive Grid */
+        .video-panel {
+            background-color: #000000;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+            border-radius: 4px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Side-by-Side columns for Desktop */
+            gap: 20px;
+        }
+
+        /* Lock the YouTube Players into Flawless Mobile Vertical Cell Dimensions */
+        .video-card {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; /* Strict 9:16 Vertical Smartphone Ratio */
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #111;
+        }
+
+        .video-card iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 📱 Flawless Smart-Stacking Rules For Mobile Phone Screens */
+        @media (max-width: 768px) {
+            .header-panel {
+                flex-direction: column-reverse; /* Stacks Gold Symbol directly over text */
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .icon-bar {
+                justify-content: center;
+            }
+
+            .video-panel {
+                grid-template-columns: 1fr; /* Shifts into a scrolling single column */
+                padding: 20px;
+            }
+            
+            .video-card {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <!-- Header Row Section -->
+        <div class="header-panel">
+            <div class="header-left">
+                <h1>Waters Of Yersu</h1>
+                <p>Official Page (Under Construction)</p>
+                
+                <!-- Front Row Interactive Checkout Badges -->
+                <div class="icon-bar">
+                    <a href="https://amazon.com" class="icon-link" title="Amazon Kindle" target="_blank">a</a>
+                    <a href="https://google.com" class="icon-link" title="Google Books" target="_blank">G</a>
+                    <a href="https://www.youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
+                    <a href="#" class="icon-link" title="Discord">D</a>
+                    <a href="#" class="icon-link" title="Contact">✉</a>
+                </div>
+            </div>
+
+            <!-- Custom Runic Emblem Anchor Point -->
+            <div class="medallion-box">
+                <img src="runic-medallion.png" alt="Waters of Yersu Medallion"> <!-- Just name your emblem image file this -->
+            </div>
+        </div>
+
+        <!-- Tight Cinematic 4-Column Video Gallery (Left to Right URL Feed) -->
+        <div class="video-panel">
+            <div class="video-card">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
