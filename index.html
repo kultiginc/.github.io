@@ -23,51 +23,65 @@
 
         /* The Main Layout Shield Wrapper */
         .wrapper {
-            width: 90%;
+            width: 95%;
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
 
-        /* Header Box with Pure Black Background and Glowing Yersu Teal (59e5d6) Outer Glow */
+        /* Fixed Compact Header with Uniform 360° Outer Teal Glow */
         .header-panel {
             background-color: #000000;
             border: 2px solid #59e5d6; 
-            box-shadow: 0 0 25px #59e5d6; /* 360° Uniform Radiant Glow */
+            box-shadow: 0 0 25px #59e5d6; 
             border-radius: 4px;
-            padding: 40px;
+            padding: 25px 40px; /* Reduced vertical padding to stop stretching */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
+            min-height: 180px; /* Locks baseline height */
         }
 
+        /* Clean Left Container stacking Title, Subtitle, and Icons cleanly */
         .header-left {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            align-items: flex-start;
+            justify-content: center;
+            gap: 12px;
+            max-width: 55%;
         }
 
-        /* Custom PNG Title Formatting - Scales Perfectly across screens */
+        /* Fixed PNG Logo Formatting - Strips wide vertical dead-space scaling */
         .brand-headline {
-            max-width: clamp(280px, 40vw, 500px);
+            width: 100%;
+            max-width: 420px; /* Scaled perfectly for text scanning */
             height: auto;
             display: block;
+            object-fit: contain;
         }
 
+        /* Fixed small text placement */
         .header-left p {
             margin: 0;
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #8fa3a6;
             letter-spacing: 1px;
+            font-weight: 500;
         }
 
-        /* Re-centered, Frame-Free Medallion Size Rule */
+        /* Cleaned Medallion Box - Large, centered, frame-free */
+        .medallion-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
         .medallion-box img {
-            width: clamp(220px, 22vw, 340px); 
+            width: clamp(160px, 22vw, 240px); /* Well-balanced desktop size proportions */
             height: auto;
             display: block;
             border: none !important; 
@@ -78,7 +92,7 @@
         .icon-bar {
             display: flex;
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .icon-link {
@@ -103,11 +117,11 @@
             transform: translateY(-2px);
         }
 
-        /* Pure Black Video Panel with Glowing Yersu Teal (59e5d6) Outer Glow */
+        /* Pure Black Video Panel with Glowing Yersu Teal Outer Glow */
         .video-panel {
             background-color: #000000;
             border: 2px solid #59e5d6; 
-            box-shadow: 0 0 25px #59e5d6; /* 360° Uniform Radiant Glow */
+            box-shadow: 0 0 25px #59e5d6; 
             border-radius: 4px;
             padding: 30px;
             display: grid;
@@ -115,7 +129,7 @@
             gap: 20px;
         }
 
-        /* Lock the YouTube Players into Flawless Mobile Vertical Cell Dimensions */
+        /* Lock the YouTube Players into Vertical Cell Dimensions */
         .video-card {
             position: relative;
             width: 100%;
@@ -136,15 +150,25 @@
 
         /* Smart-Stacking Rules For Mobile Phone Screens */
         @media (max-width: 768px) {
+            .wrapper {
+                margin: 15px auto;
+                gap: 20px;
+            }
+
             .header-panel {
                 flex-direction: column-reverse;
                 text-align: center;
                 padding: 30px 20px;
-                gap: 30px;
+                gap: 25px;
             }
 
             .header-left {
+                max-width: 100%;
                 align-items: center;
+            }
+
+            .brand-headline {
+                max-width: 300px;
             }
 
             .icon-bar {
@@ -157,7 +181,7 @@
             }
             
             .video-card {
-                max-width: 320px;
+                max-width: 290px;
                 margin: 0 auto;
             }
         }
@@ -170,11 +194,11 @@
         <!-- Header Row Section -->
         <div class="header-panel">
             <div class="header-left">
-                <!-- Swapped Plain Text for your Custom PNG Headline Asset -->
+                <!-- Main Comic Logo Layout Anchor -->
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
                 <p>Official Page (Under Construction)</p>
                 
-                <!-- Front Row Interactive Checkout Badges -->
+                <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
                     <a href="https://amazon.com" class="icon-link" title="Amazon Kindle" target="_blank">a</a>
                     <a href="https://google.com" class="icon-link" title="Google Books" target="_blank">G</a>
@@ -190,7 +214,7 @@
             </div>
         </div>
 
-        <!-- Tight Unlocked Unwrapped 4-Column Video Gallery -->
+        <!-- 4-Column Video Gallery Grid Row -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe src="https://youtube.com/embed/j2OkPtxXWt8" allowfullscreen></iframe>
