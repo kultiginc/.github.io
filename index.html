@@ -31,11 +31,11 @@
             gap: 30px;
         }
 
-        /* Header Box with 360-Degree Uniform Outer Teal Glow */
+        /* Header Box with Pure Black Background and Glowing Yersu Teal (59e5d6) Outer Glow */
         .header-panel {
             background-color: #000000;
-            border: 2px solid #00a8a8; 
-            box-shadow: 0 0 25px #00a8a8; /* Perfect Equal 360° Outer Glow */
+            border: 2px solid #59e5d6; 
+            box-shadow: 0 0 25px #59e5d6; /* 360° Uniform Radiant Glow */
             border-radius: 4px;
             padding: 40px;
             display: flex;
@@ -47,18 +47,15 @@
         .header-left {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            align-items: flex-start;
         }
 
-        /* High-End Cinematic Title Formatting */
-        .header-left h1 {
-            margin: 0;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: #00a8a8; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(0, 168, 168, 0.5);
+        /* Custom PNG Title Formatting - Scales Perfectly across screens */
+        .brand-headline {
+            max-width: clamp(280px, 40vw, 500px);
+            height: auto;
+            display: block;
         }
 
         .header-left p {
@@ -68,9 +65,9 @@
             letter-spacing: 1px;
         }
 
-        /* Cleaned Medallion Box - 2.5x Bigger & Frame Completely Removed */
+        /* Re-centered, Frame-Free Medallion Size Rule */
         .medallion-box img {
-            width: clamp(250px, 25vw, 380px); 
+            width: clamp(220px, 22vw, 340px); 
             height: auto;
             display: block;
             border: none !important; 
@@ -81,7 +78,7 @@
         .icon-bar {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .icon-link {
@@ -100,17 +97,17 @@
         }
 
         .icon-link:hover {
-            border-color: #00a8a8;
-            color: #00a8a8;
-            box-shadow: 0 0 12px #00a8a8; /* Added outer glow to active icons */
+            border-color: #59e5d6;
+            color: #59e5d6;
+            box-shadow: 0 0 12px #59e5d6; 
             transform: translateY(-2px);
         }
 
-        /* Pure Black Video Panel with 360-Degree Uniform Outer Teal Glow */
+        /* Pure Black Video Panel with Glowing Yersu Teal (59e5d6) Outer Glow */
         .video-panel {
             background-color: #000000;
-            border: 2px solid #00a8a8; 
-            box-shadow: 0 0 25px #00a8a8; /* Perfect Equal 360° Outer Glow */
+            border: 2px solid #59e5d6; 
+            box-shadow: 0 0 25px #59e5d6; /* 360° Uniform Radiant Glow */
             border-radius: 4px;
             padding: 30px;
             display: grid;
@@ -143,6 +140,11 @@
                 flex-direction: column-reverse;
                 text-align: center;
                 padding: 30px 20px;
+                gap: 30px;
+            }
+
+            .header-left {
+                align-items: center;
             }
 
             .icon-bar {
@@ -168,7 +170,8 @@
         <!-- Header Row Section -->
         <div class="header-panel">
             <div class="header-left">
-                <h1>Waters Of Yersu</h1>
+                <!-- Swapped Plain Text for your Custom PNG Headline Asset -->
+                <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
                 <p>Official Page (Under Construction)</p>
                 
                 <!-- Front Row Interactive Checkout Badges -->
