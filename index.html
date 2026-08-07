@@ -1,4 +1,4 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@ html<!DOCTYPE html>
         body {
             margin: 0;
             padding: 0;
-            background-image: url('yersu-bg.jpg'); /* Just name your background image file this */
+            background-image: url('yersu-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -31,11 +31,11 @@ html<!DOCTYPE html>
             gap: 30px;
         }
 
-        /* 1. Header Box with Pure Black Background and Glowing Neon Teal Trim */
+        /* Header Box with 360-Degree Uniform Outer Teal Glow */
         .header-panel {
             background-color: #000000;
-            border: 2px solid #00f2ff;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+            border: 2px solid #00a8a8; 
+            box-shadow: 0 0 25px #00a8a8; /* Perfect Equal 360° Outer Glow */
             border-radius: 4px;
             padding: 40px;
             display: flex;
@@ -54,11 +54,11 @@ html<!DOCTYPE html>
         .header-left h1 {
             margin: 0;
             font-size: clamp(2rem, 5vw, 3.5rem);
-            color: #00f2ff;
+            color: #00a8a8; 
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 168, 168, 0.5);
         }
 
         .header-left p {
@@ -68,14 +68,16 @@ html<!DOCTYPE html>
             letter-spacing: 1px;
         }
 
-        /* Runic Medallion Framing */
+        /* Cleaned Medallion Box - 2.5x Bigger & Frame Completely Removed */
         .medallion-box img {
-            width: clamp(100px, 15vw, 160px);
+            width: clamp(250px, 25vw, 380px); 
             height: auto;
             display: block;
+            border: none !important; 
+            outline: none !important;
         }
 
-        /* 2. Seamless Row of Compact Storefront Navigation Icons */
+        /* Seamless Row of Compact Storefront Navigation Icons */
         .icon-bar {
             display: flex;
             gap: 15px;
@@ -98,21 +100,21 @@ html<!DOCTYPE html>
         }
 
         .icon-link:hover {
-            border-color: #00f2ff;
-            color: #00f2ff;
-            box-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+            border-color: #00a8a8;
+            color: #00a8a8;
+            box-shadow: 0 0 12px #00a8a8; /* Added outer glow to active icons */
             transform: translateY(-2px);
         }
 
-        /* 3. Pure Black Video Panel with Side-by-Side Tight Responsive Grid */
+        /* Pure Black Video Panel with 360-Degree Uniform Outer Teal Glow */
         .video-panel {
             background-color: #000000;
-            border: 2px solid #00f2ff;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+            border: 2px solid #00a8a8; 
+            box-shadow: 0 0 25px #00a8a8; /* Perfect Equal 360° Outer Glow */
             border-radius: 4px;
             padding: 30px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 Side-by-Side columns for Desktop */
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
@@ -120,8 +122,7 @@ html<!DOCTYPE html>
         .video-card {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; /* Strict 9:16 Vertical Smartphone Ratio */
-            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding-top: 177.77%; 
             border-radius: 4px;
             overflow: hidden;
             background-color: #111;
@@ -136,10 +137,10 @@ html<!DOCTYPE html>
             border: none;
         }
 
-        /* ðŸ“± Flawless Smart-Stacking Rules For Mobile Phone Screens */
+        /* Smart-Stacking Rules For Mobile Phone Screens */
         @media (max-width: 768px) {
             .header-panel {
-                flex-direction: column-reverse; /* Stacks Gold Symbol directly over text */
+                flex-direction: column-reverse;
                 text-align: center;
                 padding: 30px 20px;
             }
@@ -149,7 +150,7 @@ html<!DOCTYPE html>
             }
 
             .video-panel {
-                grid-template-columns: 1fr; /* Shifts into a scrolling single column */
+                grid-template-columns: 1fr;
                 padding: 20px;
             }
             
@@ -174,31 +175,31 @@ html<!DOCTYPE html>
                 <div class="icon-bar">
                     <a href="https://amazon.com" class="icon-link" title="Amazon Kindle" target="_blank">a</a>
                     <a href="https://google.com" class="icon-link" title="Google Books" target="_blank">G</a>
-                    <a href="https://www.youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
+                    <a href="https://youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
                     <a href="#" class="icon-link" title="Discord">D</a>
-                    <a href="#" class="icon-link" title="Contact">âœ‰</a>
+                    <a href="#" class="icon-link" title="Contact">?</a>
                 </div>
             </div>
 
             <!-- Custom Runic Emblem Anchor Point -->
             <div class="medallion-box">
-                <img src="runic-medallion.png" alt="Waters of Yersu Medallion"> <!-- Just name your emblem image file this -->
+                <img src="runic-medallion.png" alt="Waters of Yersu Medallion">
             </div>
         </div>
 
-        <!-- Tight Cinematic 4-Column Video Gallery (Left to Right URL Feed) -->
+        <!-- Tight Unlocked Unwrapped 4-Column Video Gallery -->
         <div class="video-panel">
             <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
+                <iframe src="https://youtube.com/embed/j2OkPtxXWt8" allowfullscreen></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
+                <iframe src="https://youtube.com/embed/4c9W6motNRw" allowfullscreen></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
+                <iframe src="https://youtube.com/embed/ps6LxT-VKOc" allowfullscreen></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
+                <iframe src="https://youtube.com/embed/MyZd_Buecq8" allowfullscreen></iframe>
             </div>
         </div>
 
