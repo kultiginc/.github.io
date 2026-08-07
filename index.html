@@ -42,7 +42,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 30px;
-            min-height: 180px; 
+            min-height: 220px; /* Increased slightly to accommodate larger assets */
         }
 
         /* Expanded Left Container to give your Title Image full clearance */
@@ -51,17 +51,17 @@
             flex-direction: column;
             justify-content: center;
             gap: 12px;
-            flex-grow: 1; /* Allows the left container to stretch across your selection zone */
-            max-width: 70%; /* Keeps it from colliding with the medallion */
+            flex-grow: 1;
+            max-width: 65%;
         }
 
-        /* PERFECT UNIFORM WIDE SCALING */
+        /* Uniform Wide Title Scaling */
         .brand-headline {
             width: 100%;
-            max-width: 600px; /* Expanded out to fill your exact selection box width */
+            max-width: 600px;
             height: auto;
             display: block;
-            object-fit: contain; /* Forces it to scale uniformly without stretching or distorting */
+            object-fit: contain;
         }
 
         /* Small text placement formatting */
@@ -73,20 +73,23 @@
             font-weight: 500;
         }
 
-        /* Cleaned Medallion Box - Large, centered, frame-free */
+        /* Expanded Medallion Box to match your selection zone height */
         .medallion-box {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
+            height: 100%;
+            min-height: 200px; /* Matches selection zone height */
         }
 
         .medallion-box img {
-            width: clamp(160px, 22vw, 240px); 
+            width: clamp(220px, 28vw, 320px); /* Expanded upper limits to fill your selection box fully */
             height: auto;
             display: block;
             border: none !important; 
             outline: none !important;
+            object-fit: contain;
         }
 
         /* Seamless Row of Compact Storefront Navigation Icons */
@@ -170,6 +173,14 @@
 
             .brand-headline {
                 max-width: 320px;
+            }
+
+            .medallion-box {
+                min-height: auto;
+            }
+
+            .medallion-box img {
+                width: 200px;
             }
 
             .icon-bar {
