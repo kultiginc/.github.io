@@ -330,7 +330,7 @@
             </div>
         </div>
 
-        <!-- 5-Column Fully Rescued YouTube Embed Players -->
+        <!-- 5-Column Corrected Native Embed YouTube Player Grid -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe src="https://youtube.com" allowfullscreen></iframe>
@@ -354,12 +354,23 @@
     <script>
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
+        const artifactPortal = document.querySelector('.artifact-portal');
 
-        artifactBtn.addEventListener('click', () => {
-            // Activates mechanical spin & subtle, tight edge-glow animations
+        // Toggle activation on medallion click
+        artifactBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents document click trigger from firing at the same time
             artifactBtn.classList.toggle('activated');
-            // Gracefully opens the input form box view path
             revealZone.classList.toggle('show');
+        });
+
+        // Smart Outside Click Cancel Mechanism
+        document.addEventListener('click', (e) => {
+            // Checks if user clicked outside the whole interactive medallion/input container area
+            if (!artifactPortal.contains(e.target)) {
+                // Instantly snaps everything back to baseline normal form
+                artifactBtn.classList.remove('activated');
+                revealZone.classList.remove('show');
+            }
         });
     </script>
 
