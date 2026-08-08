@@ -43,7 +43,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 30px;
-            min-height: 220px;
+            min-height: 220px; /* Increased slightly to accommodate larger assets */
         }
 
         /* Expanded Left Container to give your Title Image full clearance */
@@ -84,35 +84,6 @@
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
         }
 
-        /* Seamless Row of Compact Storefront Navigation Icons */
-        .icon-bar {
-            display: flex;
-            gap: 15px;
-            margin-top: 5px;
-        }
-
-        .icon-link {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #8fa3a6;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            color: #8fa3a6;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .icon-link:hover {
-            border-color: #59e5d6;
-            color: #59e5d6;
-            box-shadow: 0 0 12px #59e5d6; 
-            transform: translateY(-2px);
-        }
-
         /* --- ARTIFACT PORTAL INTERFACE SYSTEM --- */
         .medallion-box {
             display: flex;
@@ -132,23 +103,19 @@
         /* The Button Box Container */
         .medallion-container {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
         }
 
         /* Circular-Masked Interactive Button Engine */
         .medallion-trigger-btn {
             width: 100%;
             height: 100%;
-            background-image: url('runic-medallion.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: transparent;
             border: none !important;
             padding: 0 !important;
             cursor: pointer;
             outline: none !important;
-            background-color: transparent;
             /* Mask forces mouse clicks strictly on circular graphic ink pixels */
             -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
             mask-image: radial-gradient(circle, black 70%, transparent 71%);
@@ -213,6 +180,35 @@
             text-transform: uppercase;
             text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
             text-align: center;
+        }
+
+        /* Seamless Row of Compact Storefront Navigation Icons */
+        .icon-bar {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .icon-link {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #8fa3a6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #8fa3a6;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .icon-link:hover {
+            border-color: #59e5d6;
+            color: #59e5d6;
+            box-shadow: 0 0 12px #59e5d6; 
+            transform: translateY(-2px);
         }
 
         /* Pure Black Video Panel with Glowing Yersu Teal Outer Glow */
@@ -318,3 +314,4 @@
             <div class="medallion-box">
                 <div class="artifact-portal">
                     <div class="medallion-container">
+                        <button type="button" id="artifactBtn" class="medallion-trigger-btn" title="Click to activate artifact">
