@@ -43,7 +43,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 30px;
-            min-height: 220px; /* Increased slightly to accommodate larger assets */
+            min-height: 220px;
         }
 
         /* Expanded Left Container to give your Title Image full clearance */
@@ -74,23 +74,115 @@
             font-weight: 500;
         }
 
-        /* Expanded Medallion Box to match your selection zone height */
+        /* Custom Medallion Golden Kindle Promo Banner */
+        .kindle-promo {
+            margin: 5px 0;
+            font-size: 1.25rem;
+            color: #d29a39; 
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
+        }
+
+        /* --- ARTIFACT PORTAL INTERFACE SYSTEM --- */
         .medallion-box {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
-            height: 100%;
-            min-height: 200px; /* Matches selection zone height */
+            min-height: 240px;
         }
 
-        .medallion-box img {
-            width: clamp(220px, 28vw, 320px); /* Expanded upper limits to fill your selection box fully */
-            height: auto;
-            display: block;
-            border: none !important; 
+        .artifact-portal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* The Button Box Container */
+        .medallion-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Circular-Masked Interactive Button Engine */
+        .medallion-trigger-btn {
+            width: 100%;
+            height: 100%;
+            background-image: url('runic-medallion.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none !important;
+            padding: 0 !important;
+            cursor: pointer;
             outline: none !important;
-            object-fit: contain;
+            background-color: transparent;
+            -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
+            mask-image: radial-gradient(circle, black 70%, transparent 71%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+        }
+
+        /* Hover: Medallion expands and flares amber gold */
+        .medallion-trigger-btn:hover {
+            transform: scale(1.04);
+            filter: drop-shadow(0 0 25px rgba(210, 154, 57, 0.8));
+        }
+
+        /* Smooth 20-Degree Mechanical Clockwise Rotation triggered by JavaScript */
+        .medallion-trigger-btn.activated {
+            transform: rotate(20deg) scale(1.02);
+            filter: drop-shadow(0 0 35px #59e5d6);
+        }
+
+        /* Dynamic Hidden Input Area Container */
+        .email-reveal-zone {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Expands layout view box once click executes */
+        .email-reveal-zone.show {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        /* Sleek input form styling mapping */
+        .runic-input {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px solid #59e5d6;
+            border-radius: 4px;
+            padding: 10px 15px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 240px;
+            outline: none;
+            box-shadow: 0 0 10px rgba(89, 229, 214, 0.2);
+        }
+
+        .runic-input:focus {
+            box-shadow: 0 0 15px rgba(89, 229, 214, 0.6);
+            border-color: #ffffff;
+        }
+
+        /* Custom static instruction layout script tracking */
+        .artifact-instruction-text {
+            font-size: 0.8rem;
+            color: #d29a39; 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+            text-align: center;
         }
 
         /* Seamless Row of Compact Storefront Navigation Icons */
@@ -176,16 +268,13 @@
                 max-width: 320px;
             }
 
+            .kindle-promo {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
             .medallion-box {
                 min-height: auto;
-            }
-
-            .medallion-box img {
-                width: 200px;
-            }
-
-            .icon-bar {
-                justify-content: center;
             }
 
             .video-panel {
@@ -211,6 +300,9 @@
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
                 <p>Official Page (Under Construction)</p>
                 
+                <!-- Gold Kindle Notification Alert -->
+                <div class="kindle-promo">ISSUE 1 & 2 ARE LIVE ON AMAZON KINDLE!</div>
+                
                 <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
                     <a href="https://amazon.com" class="icon-link" title="Amazon Kindle" target="_blank">a</a>
@@ -221,9 +313,21 @@
                 </div>
             </div>
 
-            <!-- Custom Runic Emblem Anchor Point -->
+            <!-- Custom Interactive Artifact Box Anchor Point -->
             <div class="medallion-box">
-                <img src="runic-medallion.png" alt="Waters of Yersu Medallion">
+                <div class="artifact-portal">
+                    <div class="medallion-container">
+                        <button type="button" id="artifactBtn" class="medallion-trigger-btn" title="Click to activate artifact"></button>
+                    </div>
+                    
+                    <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
+                    
+                    <div id="revealZone" class="email-reveal-zone">
+                        <form action="https://formspree.io" method="POST">
+                            <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -243,7 +347,19 @@
             </div>
         </div>
 
-    </div>
+    </div> <!-- Secured: Outer main wrapper layout tag -->
+
+    <script>
+        const artifactBtn = document.getElementById('artifactBtn');
+        const revealZone = document.getElementById('revealZone');
+
+        artifactBtn.addEventListener('click', () => {
+            // Activates mechanical spin & Teal energy flare animations
+            artifactBtn.classList.toggle('activated');
+            // Gracefully opens the input form box view path
+            revealZone.classList.toggle('show');
+        });
+    </script>
 
 </body>
 </html>
