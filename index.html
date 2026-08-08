@@ -100,11 +100,11 @@
             gap: 12px;
         }
 
-        /* The Button Box Container */
+        /* Expanded Medallion Box Container back to its original grandeur */
         .medallion-container {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: clamp(220px, 28vw, 320px);
+            height: clamp(220px, 28vw, 320px);
         }
 
         /* Circular-Masked Interactive Button Engine */
@@ -122,19 +122,24 @@
             background-color: transparent;
             -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
             mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+            /* Smooth timing transforms and filter glows */
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Hover: Medallion expands and flares amber gold */
+        /* ?? Hover state: Medallion grows and radiates an intense gradient golden aura */
         .medallion-trigger-btn:hover {
-            transform: scale(1.04);
-            filter: drop-shadow(0 0 25px rgba(210, 154, 57, 0.8));
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(210, 154, 57, 0.9)) 
+                    drop-shadow(0 0 30px rgba(210, 154, 57, 0.6)) 
+                    drop-shadow(0 0 45px rgba(210, 154, 57, 0.3));
         }
 
-        /* Smooth 20-Degree Mechanical Clockwise Rotation triggered by JavaScript */
+        /* ?? Click state: 20-Degree Mechanical Spin with an intense gradient Yersu Teal burst */
         .medallion-trigger-btn.activated {
-            transform: rotate(20deg) scale(1.02);
-            filter: drop-shadow(0 0 35px #59e5d6);
+            transform: rotate(20deg) scale(1.03);
+            filter: drop-shadow(0 0 15px rgba(89, 229, 214, 0.9)) 
+                    drop-shadow(0 0 30px rgba(89, 229, 214, 0.6)) 
+                    drop-shadow(0 0 45px rgba(89, 229, 214, 0.3));
         }
 
         /* Dynamic Hidden Input Area Container */
@@ -214,7 +219,7 @@
             transform: translateY(-2px);
         }
 
-        /* Pure Black Video Panel with Glowing Yersu Teal Outer Glow */
+        /* Pure Black Video Panel expanded to perfectly fit a 5-Column Grid */
         .video-panel {
             background-color: #000000;
             border: 2px solid #59e5d6; 
@@ -222,8 +227,8 @@
             border-radius: 4px;
             padding: 30px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
         }
 
         /* Lock the YouTube Players into Vertical Cell Dimensions */
@@ -331,8 +336,11 @@
             </div>
         </div>
 
-        <!-- 4-Column Video Gallery Grid Row -->
+        <!-- 5-Column Rescued Video Gallery Grid Row -->
         <div class="video-panel">
+            <div class="video-card">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
             <div class="video-card">
                 <iframe src="https://youtube.com" allowfullscreen></iframe>
             </div>
@@ -347,14 +355,14 @@
             </div>
         </div>
 
-    </div> <!-- Secured: Outer main wrapper layout tag -->
+    </div>
 
     <script>
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
 
         artifactBtn.addEventListener('click', () => {
-            // Activates mechanical spin & Teal energy flare animations
+            // Activates mechanical spin & vibrant deep-gradient flare animations
             artifactBtn.classList.toggle('activated');
             // Gracefully opens the input form box view path
             revealZone.classList.toggle('show');
