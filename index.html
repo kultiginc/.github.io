@@ -136,7 +136,7 @@
             transform: rotate(20deg) scale(1.02);
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
         }
-/* Dynamic Hidden Input Area Container */
+ /* Dynamic Hidden Input Area Container */
         .email-reveal-zone {
             max-height: 0;
             opacity: 0;
@@ -330,7 +330,7 @@
             </div>
         </div>
 
-        <!-- 5-Column Corrected Native Embed YouTube Player Grid -->
+        <!-- 5-Column Streaming Override YouTube Player Grid -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe src="https://youtube.com" allowfullscreen></iframe>
@@ -358,16 +358,14 @@
 
         // Toggle activation on medallion click
         artifactBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevents document click trigger from firing at the same time
+            e.stopPropagation(); 
             artifactBtn.classList.toggle('activated');
             revealZone.classList.toggle('show');
         });
 
         // Smart Outside Click Cancel Mechanism
         document.addEventListener('click', (e) => {
-            // Checks if user clicked outside the whole interactive medallion/input container area
             if (!artifactPortal.contains(e.target)) {
-                // Instantly snaps everything back to baseline normal form
                 artifactBtn.classList.remove('activated');
                 revealZone.classList.remove('show');
             }
