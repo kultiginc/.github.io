@@ -100,7 +100,7 @@
             gap: 12px;
         }
 
-        /* Restored to its original full-sized grandeur */
+        /* Expanded Medallion Box Container back to its original grandeur */
         .medallion-container {
             position: relative;
             width: clamp(220px, 28vw, 320px);
@@ -122,21 +122,21 @@
             background-color: transparent;
             -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
             mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            transition: transform 0.5s ease, filter 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
         }
 
-        /* ?? Hover state: Sharp, bright, gold edge-glow sampled straight from your style */
+        /* ?? Hover state: Tight, intense gold edge glow tracing your design precisely */
         .medallion-trigger-btn:hover {
             transform: scale(1.04);
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
         }
 
-        /* ?? Click state: 20-Degree Mechanical Spin with tight, high-intensity signature Teal glow */
+        /* ?? Click state: 20-Degree Mechanical Spin with sharp, high-intensity Teal edge flare */
         .medallion-trigger-btn.activated {
             transform: rotate(20deg) scale(1.02);
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
         }
- /* Dynamic Hidden Input Area Container */
+/* Dynamic Hidden Input Area Container */
         .email-reveal-zone {
             max-height: 0;
             opacity: 0;
@@ -330,23 +330,13 @@
             </div>
         </div>
 
-        <!-- 5-Column True Native Embed YouTube Player Grid -->
+        <!-- 5-Column Clean Video Container Grid -->
         <div class="video-panel">
-            <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://youtube.com" allowfullscreen></iframe>
-            </div>
+            <div class="video-card"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
         </div>
 
     </div>
