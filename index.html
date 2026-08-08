@@ -6,6 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waters of Yersu - Official Page</title>
     <style>
+/* Container & Input Layout Framework */
+.runic-portal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.runic-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Sleek, Atmospheric Entry Text Field */
+.runic-input {
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 2px solid #59e5d6; /* Signature Yersu teal border tint */
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 260px;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Active Input Box Glow Overlay */
+.runic-input:focus {
+    box-shadow: 0 0 15px rgba(89, 229, 214, 0.6);
+    border-color: #ffffff;
+}
+
+/* ? THE MEDALLION ENGINE: Strips native button styles away */
+.medallion-trigger-btn {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    outline: none !important;
+    position: relative;
+    /* Soft cubic-bezier curve creates a heavy mechanical feel on hover */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+}
+
+.medallion-trigger-btn img {
+    width: clamp(220px, 28vw, 320px);
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* ?? HOVER ANIMATION: Medallion subtly swells and radiates golden warmth */
+.medallion-trigger-btn:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 25px rgba(210, 154, 57, 0.75)); /* Soft golden aura */
+}
+
+/* ?? CLICK ANIMATION: Instant heavy compression & Teal Energy Blast! */
+.medallion-trigger-btn:active {
+    transform: scale(0.94); /* Compresses down instantly like a real button */
+    filter: drop-shadow(0 0 35px #59e5d6); /* Snappy burst into brilliant teal */
+    transition: transform 0.05s ease, filter 0.05s ease; /* Blazing fast execution */
+}
+
+/* Golden Context Hint Placement Text */
+.runic-hint-text {
+    font-size: 0.8rem;
+    color: #d29a39; /* Medallion matching gold */
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+}
         /* Base Page Setup & Epic Yersu Background */
         body {
             margin: 0;
@@ -239,11 +317,21 @@
                 </div>
             </div>
 
-            <!-- Custom Runic Emblem Anchor Point -->
-            <div class="medallion-box">
+            <!-- Interactive Runic Medallion Follow Portal -->
+<div class="medallion-box">
+    <div class="runic-portal-container">
+        <!-- The invisible form that collects emails secretly -->
+        <form class="runic-form" action="https://formspree.io" method="POST">
+            <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO FOLLOW SAGA..." required>
+            
+            <!-- Your Medallion transformed into the active Submit Button -->
+            <button type="submit" class="medallion-trigger-btn" title="Click to Follow Waters of Yersu">
                 <img src="runic-medallion.png" alt="Waters of Yersu Medallion">
-            </div>
-        </div>
+            </button>
+        </form>
+        <span class="runic-hint-text">CLICK THE MEDALLION TO FOLLOW</span>
+    </div>
+</div>
 
         <!-- 4-Column Video Gallery Grid Row -->
         <div class="video-panel">
