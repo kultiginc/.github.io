@@ -74,7 +74,13 @@
             font-weight: 500;
         }
 
-        /* Custom Medallion Golden Kindle Promo Banner */
+        /* Clickable Golden Kindle Promo Banner Link */
+        .kindle-promo-link {
+            text-decoration: none;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
         .kindle-promo {
             margin: 5px 0;
             font-size: 1.25rem;
@@ -82,6 +88,75 @@
             font-weight: 800;
             letter-spacing: 1.5px;
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover glow effect for the big orange text line */
+        .kindle-promo-link:hover .kindle-promo {
+            color: #ffbe4a;
+            text-shadow: 0 0 20px rgba(210, 154, 57, 0.95);
+            transform: scale(1.01);
+        }
+        /* Seamless Row of Compact Storefront Navigation Icons */
+        .icon-bar {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .icon-link {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #8fa3a6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #8fa3a6;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 0.9rem;
+            background: transparent;
+        }
+
+        /* SVG Vector Icon Global Formatting */
+        .icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: #8fa3a6;
+            transition: fill 0.3s ease;
+        }
+
+        /* Standard Interactive Button Hover State */
+        .icon-link:hover {
+            border-color: #59e5d6;
+            color: #59e5d6;
+            box-shadow: 0 0 12px #59e5d6; 
+            transform: translateY(-2px);
+        }
+        .icon-link:hover svg {
+            fill: #59e5d6;
+        }
+
+        /* Custom Medallion Style Rules for Amazon Kindle Button */
+        .icon-link.amazon-btn:hover {
+            border-color: #d29a39;
+            box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
+            transform: scale(1.05) translateY(-2px);
+        }
+        .icon-link.amazon-btn:hover svg {
+            fill: #d29a39;
+        }
+
+        /* Click State: High-Intensity Signature Teal Glow */
+        .icon-link.amazon-btn:active {
+            border-color: #59e5d6;
+            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
+            transform: scale(0.98);
+        }
+        .icon-link.amazon-btn:active svg {
+            fill: #59e5d6;
         }
 
         /* --- ARTIFACT PORTAL INTERFACE SYSTEM --- */
@@ -106,6 +181,7 @@
             width: clamp(220px, 28vw, 320px);
             height: clamp(220px, 28vw, 320px);
         }
+
         /* Circular-Masked Interactive Button Engine */
         .medallion-trigger-btn {
             width: 100%;
@@ -122,18 +198,17 @@
             -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
             mask-image: radial-gradient(circle, black 70%, transparent 71%);
             -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
             outline: none !important;
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /* ?? Hover state: Sharp, bright, gold edge-glow sampled straight from your style */
+        /* Hover state: Sharp, bright, gold edge-glow */
         .medallion-trigger-btn:hover {
             transform: scale(1.04);
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
         }
 
-        /* ?? Click state: 20-Degree Mechanical Spin with tight, high-intensity signature Teal glow */
+        /* Click state: 20-Degree Mechanical Spin with Teal glow */
         .medallion-trigger-btn.activated {
             transform: rotate(20deg) scale(1.02);
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
@@ -185,35 +260,6 @@
             text-transform: uppercase;
             text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
             text-align: center;
-        }
-
-        /* Seamless Row of Compact Storefront Navigation Icons */
-        .icon-bar {
-            display: flex;
-            gap: 15px;
-            margin-top: 5px;
-        }
-
-        .icon-link {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #8fa3a6;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            color: #8fa3a6;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .icon-link:hover {
-            border-color: #59e5d6;
-            color: #59e5d6;
-            box-shadow: 0 0 12px #59e5d6; 
-            transform: translateY(-2px);
         }
 
         /* Pure Black Video Panel layout tracking 5 grid columns natively */
@@ -292,7 +338,6 @@
     </style>
 </head>
 <body>
-
     <div class="wrapper">
 
         <!-- Header Row Section -->
@@ -302,12 +347,19 @@
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
                 <p>Official Page (Under Construction)</p>
                 
-                <!-- Gold Kindle Notification Alert -->
-                <div class="kindle-promo">ISSUE 1 & 2 ARE LIVE ON AMAZON KINDLE!</div>
+                <!-- Gold Kindle Notification Alert (Forces new browser page) -->
+                <a href="https://amazon.com" class="kindle-promo-link" target="_blank">
+                    <div class="kindle-promo">ISSUE 1 & 2 ARE LIVE ON AMAZON KINDLE!</div>
+                </a>
                 
                 <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
-                    <a href="https://amazon.com" class="icon-link" title="Amazon Kindle" target="_blank">a</a>
+                    <!-- Amazon Vector Button: Features your exact gold & teal portal behavior rules -->
+                    <a href="https://amazon.com" class="icon-link amazon-btn" title="Buy from Amazon Kindle" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://w3.org">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                    </a>
                     <a href="https://google.com" class="icon-link" title="Google Books" target="_blank">G</a>
                     <a href="https://youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
                     <a href="#" class="icon-link" title="Discord">D</a>
@@ -336,19 +388,19 @@
         <!-- 5-Column True Native Embed YouTube Player Grid -->
         <div class="video-panel">
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/YaLCYzmp5LM" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/j2OkPtxXWt8" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/4c9W6motNRw" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/ps6LxT-VKOc" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/MyZd_Buecq8" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
         </div>
 
