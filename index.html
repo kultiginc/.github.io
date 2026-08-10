@@ -134,7 +134,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border: none; /* Blends the pure black image background out seamlessly */
+            border: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -146,6 +146,28 @@
 
         /* Click state: Pure high-intensity Yersu teal flash */
         .icon-link.amazon-btn:active {
+            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
+            transform: scale(0.98);
+        }
+
+        /* Custom Medallion App Icon Configuration for Gumroad */
+        .icon-link.gumroad-btn {
+            background-image: url('gumroad-icon.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover state: Gold glow anchor (Matching Amazon) */
+        .icon-link.gumroad-btn:hover {
+            box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        /* Click state: Pure high-intensity Yersu teal flash (Matching Amazon) */
+        .icon-link.gumroad-btn:active {
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
@@ -328,7 +350,6 @@
                 padding: 30px 20px;
                 gap: 25px;
             }
-
             .header-left {
                 max-width: 100%;
                 align-items: center;
@@ -375,23 +396,26 @@
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
                 <p>Official Page (Under Construction)</p>
                 
-                <!-- Gold Kindle Notification Alert -->
-                <a href="https://www.amazon.com/author/kultigin" class="kindle-promo-link" target="_blank">
-                    <div class="kindle-promo">ISSUE 1 & 2 ARE LIVE ON AMAZON KINDLE!</div>
-                </a>
+                <!-- Gold Kindle Notification Alert (Static Text Only) -->
+                <div class="kindle-promo">ISSUE 1 & 2 ARE FRE ON GUMROAD FOR A LIMITED TIME!</div>
                 
                 <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
-                    <!-- Giant Yersu Styled Custom Circular Tooltip Component -->
+                    <!-- Amazon Medallion Component -->
                     <div class="custom-tooltip-wrapper">
-                     <a href="https://www.amazon.com/author/kultigin" class="icon-link amazon-btn" target="_blank"></a>
+                        <a href="https://amazon.com" class="icon-link amazon-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
                     </div>
+
+                    <!-- Gumroad Medallion Component (Replacing Google) -->
+                    <div class="custom-tooltip-wrapper">
+                        <a href="https://gumroad.com" class="icon-link gumroad-btn" target="_blank"></a>
+                        <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
+                    </div>
                     
-                    <a href="https://google.com" class="icon-link" title="Google Books" target="_blank">G</a>
                     <a href="https://youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
-                    <a href="#" class="icon-link" title="Discord">D</a>
-                    <a href="#" class="icon-link" title="Contact">?</a>
+                    <a href="https://discord.com" class="icon-link" title="Discord" target="_blank">D</a>
+                    <a href="https://contact.me" class="icon-link" title="Contact">?</a>
                 </div>
             </div>
 
@@ -416,19 +440,19 @@
         <!-- 5-Column True Native Embed YouTube Player Grid -->
         <div class="video-panel">
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/YaLCYzmp5LM" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/j2OkPtxXWt8" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/4c9W6motNRw" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/ps6LxT-VKOc" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/MyZd_Buecq8" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe src="https://youtube.com" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
         </div>
 
@@ -456,4 +480,32 @@
     </script>
 
 </body>
+
+<!--
+=======================================================================
+               CENTRAL BARE URL DIRECTORY
+=======================================================================
+Use WordPad's "Find and Replace" (Ctrl+H). Find the plain placeholder 
+link listed below, and paste your exact live destination URL over it.
+-----------------------------------------------------------------------
+
+[MAIN STOREFRONT & PROFILES]
+https://www.amazon.com/author/kultigin
+https://watersofyersu.gumroad.com/
+https://youtube.com
+https://discord.com
+https://contact.me
+
+[EMAIL CAPTURE PORTAL]
+https://formspree.io/f/moeajlke
+
+[YOUTUBE GRIDS (EMBED LINK FORMAT)]
+https://www.youtube.com/embed/YaLCYzmp5LM
+https://www.youtube.com/embed/j2OkPtxXWt8
+https://www.youtube.com/embed/4c9W6motNRw
+https://www.youtube.com/embed/ps6LxT-VKOc
+https://www.youtube.com/embed/MyZd_Buecq8
+
+=======================================================================
+-->
 </html>
