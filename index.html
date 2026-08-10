@@ -387,6 +387,7 @@
     </style>
 </head>
 <body>
+    <body>
     <div class="wrapper">
 
         <!-- Header Row Section -->
@@ -397,25 +398,25 @@
                 <p>Official Page (Under Construction)</p>
                 
                 <!-- Gold Kindle Notification Alert (Static Text Only) -->
-                <div class="kindle-promo">ISSUE 1 & 2 ARE FRE ON GUMROAD FOR A LIMITED TIME!</div>
+                <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
                 
                 <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
                     <!-- Amazon Medallion Component -->
                     <div class="custom-tooltip-wrapper">
-                        <a href="https://amazon.com" class="icon-link amazon-btn" target="_blank"></a>
+                        <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
                     </div>
 
-                    <!-- Gumroad Medallion Component (Replacing Google) -->
+                    <!-- Gumroad Medallion Component -->
                     <div class="custom-tooltip-wrapper">
-                        <a href="https://gumroad.com" class="icon-link gumroad-btn" target="_blank"></a>
+                        <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
                     </div>
                     
-                    <a href="https://youtube.com" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
-                    <a href="https://discord.com" class="icon-link" title="Discord" target="_blank">D</a>
-                    <a href="https://contact.me" class="icon-link" title="Contact">?</a>
+                    <a href="#" id="topLinkYouTube" class="icon-link" title="YouTube Channel" target="_blank">Y</a>
+                    <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
+                    <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
             </div>
 
@@ -429,7 +430,7 @@
                     <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
                     
                     <div id="revealZone" class="email-reveal-zone">
-                        <form action="https://formspree.io" method="POST">
+                        <form id="topEmailForm" action="#" method="POST">
                             <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
                         </form>
                     </div>
@@ -440,37 +441,67 @@
         <!-- 5-Column True Native Embed YouTube Player Grid -->
         <div class="video-panel">
             <div class="video-card">
-                <iframe src="https://youtube.com" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed1" src="" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed2" src="" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed3" src="" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed4" src="" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://youtube.com" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed5" src="" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
             </div>
         </div>
 
     </div>
 
+    <!-- Central URL Routing System -->
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Pull real URLs from your bottom list elements
+            const amazonUrl = document.getElementById("urlAmazon").innerText.trim();
+            const gumroadUrl = document.getElementById("urlGumroad").innerText.trim();
+            const youtubeUrl = document.getElementById("urlYouTube").innerText.trim();
+            const discordUrl = document.getElementById("urlDiscord").innerText.trim();
+            const contactUrl = document.getElementById("urlContact").innerText.trim();
+            const formspreeUrl = document.getElementById("urlFormspree").innerText.trim();
+            
+            const v1 = document.getElementById("urlVid1").innerText.trim();
+            const v2 = document.getElementById("urlVid2").innerText.trim();
+            const v3 = document.getElementById("urlVid3").innerText.trim();
+            const v4 = document.getElementById("urlVid4").innerText.trim();
+            const v5 = document.getElementById("urlVid5").innerText.trim();
+
+            // Safely inject them into your layout elements automatically
+            document.getElementById("topLinkAmazon").href = amazonUrl;
+            document.getElementById("topLinkGumroad").href = gumroadUrl;
+            document.getElementById("topLinkYouTube").href = youtubeUrl;
+            document.getElementById("topLinkDiscord").href = discordUrl;
+            document.getElementById("topLinkContact").href = contactUrl;
+            document.getElementById("topEmailForm").action = formspreeUrl;
+
+            document.getElementById("vidEmbed1").src = v1;
+            document.getElementById("vidEmbed2").src = v2;
+            document.getElementById("vidEmbed3").src = v3;
+            document.getElementById("vidEmbed4").src = v4;
+            document.getElementById("vidEmbed5").src = v5;
+        });
+
+        // Medallion Animation Logic
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
         const artifactPortal = document.querySelector('.artifact-portal');
 
-        // Toggle activation on medallion click
         artifactBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
             artifactBtn.classList.toggle('activated');
             revealZone.classList.toggle('show');
         });
 
-        // Smart Outside Click Cancel Mechanism
         document.addEventListener('click', (e) => {
             if (!artifactPortal.contains(e.target)) {
                 artifactBtn.classList.remove('activated');
@@ -479,33 +510,29 @@
         });
     </script>
 
+    <!--
+    =======================================================================
+                   CENTRAL MASTER URL DIRECTORY
+    =======================================================================
+    When I supply you a new 3-part index file in the future, it will have 
+    the bare placeholder values below. Simply highlight the text inside 
+    the <span> tags below and paste your real URLs over them in one go!
+    =======================================================================
+    -->
+    <div style="display: none !important;" aria-hidden="true">
+        <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
+        <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
+        <span id="urlYouTube">https://youtube.com</span>
+        <span id="urlDiscord">https://discord.com</span>
+        <span id="urlContact">https://contact.me</span>
+        
+        <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
+        
+        <span id="urlVid1">https://www.youtube.com/embed/YaLCYzmp5LM</span>
+        <span id="urlVid2">https://www.youtube.com/embed/j2OkPtxXWt8</span>
+        <span id="urlVid3">https://www.youtube.com/embed/4c9W6motNRw</span>
+        <span id="urlVid4">https://www.youtube.com/embed/ps6LxT-VKOc</span>
+        <span id="urlVid5">https://www.youtube.com/embed/MyZd_Buecq8</span>
+    </div>
 </body>
-
-<!--
-=======================================================================
-               CENTRAL BARE URL DIRECTORY
-=======================================================================
-Use WordPad's "Find and Replace" (Ctrl+H). Find the plain placeholder 
-link listed below, and paste your exact live destination URL over it.
------------------------------------------------------------------------
-
-[MAIN STOREFRONT & PROFILES]
-https://www.amazon.com/author/kultigin
-https://watersofyersu.gumroad.com/
-https://youtube.com
-https://discord.com
-https://contact.me
-
-[EMAIL CAPTURE PORTAL]
-https://formspree.io/f/moeajlke
-
-[YOUTUBE GRIDS (EMBED LINK FORMAT)]
-https://www.youtube.com/embed/YaLCYzmp5LM
-https://www.youtube.com/embed/j2OkPtxXWt8
-https://www.youtube.com/embed/4c9W6motNRw
-https://www.youtube.com/embed/ps6LxT-VKOc
-https://www.youtube.com/embed/MyZd_Buecq8
-
-=======================================================================
--->
 </html>
