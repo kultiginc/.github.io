@@ -13,12 +13,14 @@
             background-image: url('yersu-bg.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
+            width: 100%;
+            min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             color: #ffffff;
         }
 
@@ -30,6 +32,7 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
+            box-sizing: border-box;
         }
 
         /* Compact Header with Uniform 360° Outer Yersu Teal Glow and 80% Opacity */
@@ -519,7 +522,7 @@
         <!-- New Reader Informational Box Panel -->
         <div class="info-panel">
             <ul>
-                <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address—simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
+                <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
                 <li>You can also read them for <strong>FREE</strong> on GlobalComix. Please note that GlobalComix requires a premium membership starting from Issue 2.</li>
                 <li>You can get paperback and digital versions of the comics on Amazon Kindle. If you would truly like to support this project, purchasing them from Amazon is the best way to do so!</li>
             </ul>
@@ -550,33 +553,38 @@
     <!-- Central URL Routing System -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Pull real URLs from your bottom list elements
-            const amazonUrl = document.getElementById("urlAmazon").innerText.trim();
-            const gumroadUrl = document.getElementById("urlGumroad").innerText.trim();
-            const globalComixUrl = document.getElementById("urlGlobalComix").innerText.trim();
-            const discordUrl = document.getElementById("urlDiscord").innerText.trim();
-            const contactUrl = document.getElementById("urlContact").innerText.trim();
-            const formspreeUrl = document.getElementById("urlFormspree").innerText.trim();
+            // Securely grab elements or provide fallbacks to prevent fatal script halts
+            const getUrl = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.innerText.trim() : "";
+            };
+
+            const amazonUrl = getUrl("urlAmazon");
+            const gumroadUrl = getUrl("urlGumroad");
+            const globalComixUrl = getUrl("urlGlobalComix");
+            const discordUrl = getUrl("urlDiscord");
+            const contactUrl = getUrl("urlContact");
+            const formspreeUrl = getUrl("urlFormspree");
             
-            const v1 = document.getElementById("urlVid1").innerText.trim();
-            const v2 = document.getElementById("urlVid2").innerText.trim();
-            const v3 = document.getElementById("urlVid3").innerText.trim();
-            const v4 = document.getElementById("urlVid4").innerText.trim();
-            const v5 = document.getElementById("urlVid5").innerText.trim();
+            const v1 = getUrl("urlVid1");
+            const v2 = getUrl("urlVid2");
+            const v3 = getUrl("urlVid3");
+            const v4 = getUrl("urlVid4");
+            const v5 = getUrl("urlVid5");
 
             // Safely inject them into your layout elements automatically
-            document.getElementById("topLinkAmazon").href = amazonUrl;
-            document.getElementById("topLinkGumroad").href = gumroadUrl;
-            document.getElementById("topLinkGlobalComix").href = globalComixUrl;
-            document.getElementById("topLinkDiscord").href = discordUrl;
-            document.getElementById("topLinkContact").href = contactUrl;
-            document.getElementById("topEmailForm").action = formspreeUrl;
+            if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
+            if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
+            if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
+            if(document.getElementById("topLinkDiscord")) document.getElementById("topLinkDiscord").href = discordUrl;
+            if(document.getElementById("topLinkContact")) document.getElementById("topLinkContact").href = contactUrl;
+            if(document.getElementById("topEmailForm")) document.getElementById("topEmailForm").action = formspreeUrl;
 
-            document.getElementById("vidEmbed1").src = v1;
-            document.getElementById("vidEmbed2").src = v2;
-            document.getElementById("vidEmbed3").src = v3;
-            document.getElementById("vidEmbed4").src = v4;
-            document.getElementById("vidEmbed5").src = v5;
+            if(document.getElementById("vidEmbed1")) document.getElementById("vidEmbed1").src = v1;
+            if(document.getElementById("vidEmbed2")) document.getElementById("vidEmbed2").src = v2;
+            if(document.getElementById("vidEmbed3")) document.getElementById("vidEmbed3").src = v3;
+            if(document.getElementById("vidEmbed4")) document.getElementById("vidEmbed4").src = v4;
+            if(document.getElementById("vidEmbed5")) document.getElementById("vidEmbed5").src = v5;
         });
 
         // Medallion Animation Logic
@@ -584,27 +592,28 @@
         const revealZone = document.getElementById('revealZone');
         const artifactPortal = document.querySelector('.artifact-portal');
 
-        artifactBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
-            artifactBtn.classList.toggle('activated');
-            revealZone.classList.toggle('show');
-        });
+        if (artifactBtn && revealZone) {
+            artifactBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                artifactBtn.classList.toggle('activated');
+                revealZone.classList.toggle('show');
+            });
 
-        document.addEventListener('click', (e) => {
-            if (!artifactPortal.contains(e.target)) {
-                artifactBtn.classList.remove('remove');
-                revealZone.classList.remove('show');
-            }
-        });
+            document.addEventListener('click', (e) => {
+                if (artifactPortal && !artifactPortal.contains(e.target)) {
+                    artifactBtn.classList.remove('activated');
+                    revealZone.classList.remove('show');
+                }
+            });
+        }
     </script>
 
     <!--
     =======================================================================
                    CENTRAL MASTER URL DIRECTORY
     =======================================================================
-    When I supply you a new 3-part index file in the future, it will have 
-    the bare placeholder values below. Simply highlight the text inside 
-    the <span> tags below and paste your real URLs over them in one go!
+    Highlight the plain text content inside the <span> nodes below and 
+    replace with your real deep links to fill the whole app ecosystem!
     =======================================================================
     -->
     <div style="display: none !important;" aria-hidden="true">
