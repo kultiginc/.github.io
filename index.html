@@ -1,3 +1,4 @@
+<!-- Part 1 of 4: Base Document Framework & Panel Layout Rules -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Allows normal scrolling behavior down the page */
+            align-items: flex-start;
             color: #ffffff;
         }
 
@@ -35,45 +36,45 @@
             box-sizing: border-box;
         }
 
-        /* Clean Header Panel that collapses tightly around its child contents */
+        /* Main Teal Frame Panel: Collapses tightly around content with zero empty voids */
         .header-panel {
             background-color: rgba(0, 0, 0, 0.85);
-            border: 2px solid #59e5d6; 
-            box-shadow: 0 0 35px rgba(89, 229, 214, 0.4); 
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 35px rgba(89, 229, 214, 0.4);
             border-radius: 6px;
-            padding: 30px; 
+            padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             box-sizing: border-box;
             text-align: center;
         }
 
-        /* ANCHOR SQUARE STAGE: Dictates the true physical boundary of the artwork */
-                /* ANCHOR SQUARE STAGE: Expanded to massive width bounds to restore title scale */
+        /* THE CHOSEN SQUARE WORKSPACE: Locks your image and medallion into a single 1:1 frame */
         .hero-composite-stage {
             position: relative;
             width: 100%;
-            max-width: 1200px; /* Bleeds wide across your header panel container */
-            aspect-ratio: 2.5 / 1; /* Fluid wide perspective tracks your banner dimension */
+            max-width: 640px; /* Controls the exact presentation scale of your desktop screen square */
+            aspect-ratio: 1 / 1; /* Forces a perfect mathematical square frame */
             margin: 0 auto;
         }
 
-        /* The Base Title Artwork: Scaled up to 100% of the newly expanded workspace */
+        /* Background Layer: The headline title image expands to fill the square space natively */
         .brand-headline {
             width: 100%;
             height: 100%;
             display: block;
             object-fit: contain;
         }
-
-        /* Absolute position forces medallion to anchor flawlessly into the wide crop space */
+<!-- Part 2 of 4: Absolute Medallion Anchor, Typography & Navigation Elements -->
+        /* Foreground Layer: Locked exactly over the crescent moon cutout coordinates */
         .medallion-box {
             position: absolute;
-            top: 72%; /* Drop coordinates cleanly alignment center over crescent moon cutoff */
+            top: 52%; /* Madalyonu hilal kesiminin üzerine tam hizalamak için bu yüzdeyi de?i?tirebilirsiniz */
             left: 50%;
             transform: translate(-50%, -50%);
-            width: clamp(260px, 24vw, 440px); /* Locks your giant circular asset size natively */
+            width: 54%; /* Ba?l?k görseline göre madalyonun boyutunu belirleyen kompakt oran */
             z-index: 5;
         }
 
@@ -94,6 +95,7 @@
             align-items: center;
         }
 
+        /* Core Interactive Button Asset */
         .medallion-trigger-btn {
             width: 100%;
             height: 100%;
@@ -108,34 +110,38 @@
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /* Interactive Light Shadow Glow Blooms */
+        /* HOVER: Medallion blooms with its brilliant golden aura */
         .medallion-trigger-btn:hover {
-            transform: scale(1.04);
-            filter: drop-shadow(0 0 20px rgba(210, 154, 57, 0.95)) drop-shadow(0 0 35px rgba(89, 229, 214, 0.6));
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 25px rgba(210, 154, 57, 0.95)) drop-shadow(0 0 35px rgba(210, 154, 57, 0.5));
         }
 
+        /* CLICK/ACTIVATED: Rotates slightly and blasts out the sharp teal energy bloom */
         .medallion-trigger-btn.activated {
-            transform: rotate(20deg) scale(1.02);
-            filter: drop-shadow(0 0 30px rgba(89, 229, 214, 0.98)) drop-shadow(0 0 50px rgba(210, 154, 57, 0.65));
+            transform: rotate(20deg) scale(1.01);
+            filter: drop-shadow(0 0 30px rgba(89, 229, 214, 0.98)) drop-shadow(0 0 45px rgba(89, 229, 214, 0.7));
         }
 
-        /* Floating Input reveals securely on click activations */
+        /* FLOATING REVEAL AREA: Absolute placement prevents layout shifting/bumping */
         .email-reveal-zone {
             position: absolute;
-            top: 105%;
+            top: 110%; /* Paray? yukar? itmeden güvenli bir ?ekilde alt?nda yüzer */
             left: 50%;
             transform: translateX(-50%);
             max-height: 0;
             opacity: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, opacity 0.4s ease;
-            width: 260px;
+            width: 280px;
             display: flex;
             justify-content: center;
             z-index: 20;
         }
 
-        .email-reveal-zone.show { max-height: 50px; opacity: 1; }
+        .email-reveal-zone.show {
+            max-height: 55px;
+            opacity: 1;
+        }
 
         .runic-input {
             background-color: rgba(0, 0, 0, 0.95);
@@ -143,7 +149,7 @@
             border-radius: 4px;
             padding: 10px 15px;
             color: #ffffff;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 2px;
             text-align: center;
             width: 100%;
@@ -152,17 +158,17 @@
         }
 
         .artifact-instruction-text {
-            font-size: 0.75rem;
-            color: #d29a39; 
+            font-size: 0.8rem;
+            color: #d29a39;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             text-shadow: 0 0 5px rgba(210, 154, 57, 0.3);
             text-align: center;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
-        /* Text content follows directly below the artwork box with zero empty spacing gaps */
+        /* Page text flows tightly below the square art block with no extra layout voids */
         .under-construction-text {
             margin: 25px 0 0 0;
             font-size: 1.1rem;
@@ -174,25 +180,25 @@
         .kindle-promo {
             margin: 15px 0 5px 0;
             font-size: 1.25rem;
-            color: #d29a39; 
+            color: #d29a39;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
         }
 
-        /* Spacious distribution row for your navigation buttons */
+        /* Fully spaced, elegant storefront button alignment row */
         .icon-bar {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px; 
+            gap: 20px;
             margin-top: 15px;
             width: 100%;
         }
 
         .icon-link {
-            width: 44px; 
+            width: 44px;
             height: 44px;
             border: 2px solid #8fa3a6;
             border-radius: 50%;
@@ -211,7 +217,7 @@
         .icon-link:hover {
             border-color: #59e5d6;
             color: #59e5d6;
-            box-shadow: 0 0 12px #59e5d6; 
+            box-shadow: 0 0 12px #59e5d6;
             transform: translateY(-2px);
         }
 
@@ -219,36 +225,125 @@
         .icon-link.gumroad-btn { background-image: url('runic-medallion.png'); background-size: cover; background-position: center; border: none; }
         .icon-link.globalcomix-btn { background-image: url('globalcomix.png'); background-size: cover; background-position: center; border: none; }
 
-        /* Tooltip Framework Core Elements */
-        .custom-tooltip-wrapper { position: relative; display: inline-block; }
-        .yersu-tooltip-text { visibility: hidden; opacity: 0; position: absolute; bottom: 140%; left: 50%; transform: translateX(-50%) translateY(15px); background-color: #000000; border: 2px solid #59e5d6; box-shadow: 0 0 20px rgba(89, 229, 214, 0.6); border-radius: 50px; padding: 10px 20px; color: #59e5d6; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; z-index: 1000; transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease; }
-        .custom-tooltip-wrapper:hover .yersu-tooltip-text { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+        .custom-tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
 
-        /* Secondary Data Content Panels below the fold */
-        .info-panel { background-color: rgba(0, 0, 0, 0.85); border: 2px solid #59e5d6; box-shadow: 0 0 25px rgba(89, 229, 214, 0.2); border-radius: 6px; padding: 30px 40px; box-sizing: border-box; }
-        .info-panel ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 15px; }
-        .info-panel li { font-size: 1.1rem; line-height: 1.6; color: #d29a39; letter-spacing: 0.5px; font-weight: 500; }
-        .info-panel li strong { color: #59e5d6; }
-        .info-panel p { margin: 20px 0 0 0; font-size: 1.1rem; color: #d29a39; font-weight: bold; letter-spacing: 1px; }
+        .yersu-tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 140%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background-color: #000000;
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 20px rgba(89, 229, 214, 0.6);
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: #59e5d6;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 1000;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+        }
 
-        /* Pure Black Video Panel layout tracking 5 grid columns natively */
-        .video-panel { background-color: #000000; border: 2px solid #59e5d6; box-shadow: 0 0 25px rgba(89, 229, 214, 0.3); border-radius: 6px; padding: 30px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-        .video-card { position: relative; width: 100%; padding-top: 177.77%; border-radius: 4px; overflow: hidden; background-color: #111; }
-        .video-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .custom-tooltip-wrapper:hover .yersu-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
 
-        /* Responsive Breakpoints */
+        .info-panel {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 25px rgba(89, 229, 214, 0.2);
+            border-radius: 6px;
+            padding: 30px 40px;
+            box-sizing: border-box;
+        }
+
+        .info-panel ul {
+            margin: 0;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-panel li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d29a39;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .info-panel li strong {
+            color: #59e5d6;
+        }
+
+        .info-panel p {
+            margin: 20px 0 0 0;
+            font-size: 1.1rem;
+            color: #d29a39;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .video-panel {
+            background-color: #000000;
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 25px rgba(89, 229, 214, 0.3);
+            border-radius: 6px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .video-card {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #111;
+        }
+
+        .video-card iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Clean Mobile Optimization profiles tracking the square canvas setup */
         @media (max-width: 768px) {
-            .hero-composite-stage { max-width: 320px; }
+            .header-panel { padding: 25px 15px; }
+            .hero-composite-stage { max-width: 440px; }
+            .kindle-promo { font-size: 1.1rem; }
             .video-panel { grid-template-columns: repeat(2, 1fr); padding: 20px; }
         }
-        @media (max-width: 480px) { .video-panel { grid-template-columns: 1fr; } }
+
+        @media (max-width: 480px) {
+            .hero-composite-stage { max-width: 320px; }
+            .video-panel { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+<!-- Part 3 of 4: Document HTML Structural Content Stack -->
     <div class="wrapper">
         <div class="header-panel">
             
-            <!-- STATIC COHESIVE SQUARE STAGE CONTAINER -->
+            <!-- FIXED SQUARE STAGE CONTAINER -->
             <div class="hero-composite-stage">
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
 
@@ -269,7 +364,7 @@
                 </div>
             </div>
 
-            <!-- Content follows directly beneath the square zone with no page breaks -->
+            <!-- Content sections follow directly beneath the artwork square -->
             <p class="under-construction-text">Official Page (Under Construction)</p>
 
             <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
@@ -322,6 +417,7 @@
             </div>
         </div>
     </div>
+<!-- Part 4 of 4: Dynamic Script Engine & Global Link Directories -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const getUrl = (id) => {
