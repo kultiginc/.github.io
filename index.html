@@ -1,4 +1,3 @@
-<!-- Part 1 of 4: Base Document Framework & Panel Layout Rules -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,51 +50,56 @@
             text-align: center;
         }
 
-        /* THE CHOSEN SQUARE WORKSPACE: Locks your image and medallion into a single 1:1 frame */
+        /* THE CHOSEN SQUARE WORKSPACE: The master canvas box for your matching images */
         .hero-composite-stage {
             position: relative;
             width: 100%;
-            max-width: 640px; /* Controls the exact presentation scale of your desktop screen square */
-            aspect-ratio: 1 / 1; /* Forces a perfect mathematical square frame */
+            max-width: 1100px; /* Enforces a large, high-definition desktop presentation size */
+            aspect-ratio: 1 / 1; /* Locks the master framing into your native image dimensions */
             margin: 0 auto;
         }
 
-        /* Background Layer: The headline title image expands to fill the square space natively */
+        /* Base Layer: Background headline logo fills the canvas completely */
         .brand-headline {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             display: block;
             object-fit: contain;
+            z-index: 1;
         }
-<!-- Part 2 of 4: Absolute Medallion Anchor, Typography & Navigation Elements -->
-        /* Foreground Layer: Locked exactly over the crescent moon cutout coordinates */
+<!-- Part 2 of 4: E?le?en Tuval Katmanlar?, Etkile?im Parlamalar? ve Menü Elemanlar? -->
+        /* Foreground Layer: Madalyon tuvali, ba?l?k tuvaliyle ayn? kutunun tamam?n? (%100) kaplar */
         .medallion-box {
             position: absolute;
-            top: 52%; /* Madalyonu hilal kesiminin üzerine tam hizalamak için bu yüzdeyi de?i?tirebilirsiniz */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 54%; /* Ba?l?k görseline göre madalyonun boyutunu belirleyen kompakt oran */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 5;
+            display: block;
         }
 
         .artifact-portal {
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             width: 100%;
+            height: 100%;
         }
 
+        /* Tüm tuvali kaplayan görünmez etkile?im kutusu */
         .medallion-container {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100%;
+            background: transparent !important;
+            box-shadow: none !important;
         }
 
-        /* Core Interactive Button Asset */
+        /* Görsel Tabanl? Buton: Grafik program?ndaki konumland?rmay? pikseli pikseline korur */
         .medallion-trigger-btn {
             width: 100%;
             height: 100%;
@@ -110,22 +114,22 @@
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /* HOVER: Medallion blooms with its brilliant golden aura */
+        /* HOVER: Madalyon el yap?m? ???k hizan?za sad?k kalarak alt?n rengi parlar */
         .medallion-trigger-btn:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
             filter: drop-shadow(0 0 25px rgba(210, 154, 57, 0.95)) drop-shadow(0 0 35px rgba(210, 154, 57, 0.5));
         }
 
-        /* CLICK/ACTIVATED: Rotates slightly and blasts out the sharp teal energy bloom */
+        /* CLICK/ACTIVATED: Madalyon hafifçe döner ve turkuaz enerji patlamas?n? tetikler */
         .medallion-trigger-btn.activated {
             transform: rotate(20deg) scale(1.01);
             filter: drop-shadow(0 0 30px rgba(89, 229, 214, 0.98)) drop-shadow(0 0 45px rgba(89, 229, 214, 0.7));
         }
 
-        /* FLOATING REVEAL AREA: Absolute placement prevents layout shifting/bumping */
+        /* E-POSTA ALANI: Mutlak konumland?rma sayesinde aç?ld???nda madalyonu yukar? itmez */
         .email-reveal-zone {
             position: absolute;
-            top: 110%; /* Paray? yukar? itmeden güvenli bir ?ekilde alt?nda yüzer */
+            bottom: 5%; /* Tuvalin alt kenar?na göre güvenli bir noktada sabitlenir */
             left: 50%;
             transform: translateX(-50%);
             max-height: 0;
@@ -158,6 +162,10 @@
         }
 
         .artifact-instruction-text {
+            position: absolute;
+            bottom: 12%; /* Bilgilendirme yaz?s?n? tuvalin alt k?sm?nda sabit tutar */
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 0.8rem;
             color: #d29a39;
             font-weight: 700;
@@ -165,10 +173,10 @@
             text-transform: uppercase;
             text-shadow: 0 0 5px rgba(210, 154, 57, 0.3);
             text-align: center;
-            margin-top: 10px;
+            width: 100%;
         }
 
-        /* Page text flows tightly below the square art block with no extra layout voids */
+        /* Metin elemanlar? ortak tuval çerçevesinin hemen alt?ndan, bo?luksuz ba?lar */
         .under-construction-text {
             margin: 25px 0 0 0;
             font-size: 1.1rem;
@@ -186,7 +194,7 @@
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
         }
 
-        /* Fully spaced, elegant storefront button alignment row */
+        /* Butonlar?n s?k??mas?n? önleyen, geni? aral?kl? navigasyon çubu?u */
         .icon-bar {
             display: flex;
             justify-content: center;
@@ -324,7 +332,7 @@
             border: none;
         }
 
-        /* Clean Mobile Optimization profiles tracking the square canvas setup */
+        /* Ortalanm?? tuval yap?s?n? koruyan mobil görünüm kurallar? */
         @media (max-width: 768px) {
             .header-panel { padding: 25px 15px; }
             .hero-composite-stage { max-width: 440px; }
@@ -343,10 +351,12 @@
     <div class="wrapper">
         <div class="header-panel">
             
-            <!-- FIXED SQUARE STAGE CONTAINER -->
+            <!-- SHARED BOUNDING CANVAS STAGE CONTAINER -->
             <div class="hero-composite-stage">
+                <!-- Base Layer: 1:1 footprint background canvas -->
                 <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
 
+                <!-- Overlay Layer: 1:1 identical matching canvas stack -->
                 <div class="medallion-box">
                     <div class="artifact-portal">
                         <div class="medallion-container">
@@ -364,7 +374,7 @@
                 </div>
             </div>
 
-            <!-- Content sections follow directly beneath the artwork square -->
+            <!-- Content follows directly beneath the canvas block with zero page breaks -->
             <p class="under-construction-text">Official Page (Under Construction)</p>
 
             <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
@@ -472,20 +482,20 @@
         }
     </script>
 
+    <!-- HIDDEN STORAGE: Central Routing System Links -->
     <div style="display: none !important;" aria-hidden="true">
-        <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
-        <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
-        <span id="urlGlobalComix">https://globalcomix.com/a/waters-of-yersu</span>
+        <span id="urlAmazon">https://amazon.com</span>
+        <span id="urlGumroad">https://gumroad.com</span>
+        <span id="urlGlobalComix">https://globalcomix.com</span>
         <span id="urlDiscord">https://discord.com</span>
         <span id="urlContact">https://contact.me</span>
+        <span id="urlFormspree">https://formspree.io</span>
         
-        <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
-        
-        <span id="urlVid1">https://www.youtube.com/embed/YaLCYzmp5LM</span>
-        <span id="urlVid2">https://www.youtube.com/embed/j2OkPtxXWt8</span>
-        <span id="urlVid3">https://www.youtube.com/embed/4c9W6motNRw</span>
-        <span id="urlVid4">https://www.youtube.com/embed/ps6LxT-VKOc</span>
-        <span id="urlVid5">https://www.youtube.com/embed/MyZd_Buecq8</span>
+        <span id="urlVid1">https://youtube.com</span>
+        <span id="urlVid2">https://youtube.com</span>
+        <span id="urlVid3">https://youtube.com</span>
+        <span id="urlVid4">https://youtube.com</span>
+        <span id="urlVid5">https://youtube.com</span>
     </div>
 </body>
 </html>
