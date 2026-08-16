@@ -231,30 +231,30 @@
             letter-spacing: 1px;
         }
 
-        /* --- THE THEATER HOUSING (KR?T?K DÜZENLEME) --- */
+        /* --- THE THEATER HOUSING --- */
         .hero-theater {
             position: relative;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             border: 2px solid #59e5d6;
             box-shadow: 0 0 25px #59e5d6;
             border-radius: 4px;
             overflow: hidden;
-            display: block; /* Eski çak??an esnek kutu (flex) kurallar?n? s?f?rlar */
+            display: block; 
             box-sizing: border-box;
             padding: 20px 0 0 0;
         }
 
-        /* Ortak Kanvas Hizalama Alan? */
+        /* Shared Stack Canvas Map Area */
         .portal-canvas {
             position: relative;
             width: 100%;
-            max-width: 1000px; /* Photoshop ana kanvas geni?li?inize göre buray? güncelleyin */
+            max-width: 1000px; 
             margin: 0 auto;
             display: block;
         }
 
-        /* Katman 1: Sabit Ba?l?k Logosu Grafi?i */
+        /* Layer 1: Fixed Headline Background Block */
         .headline-base-layer {
             display: block;
             width: 100%;
@@ -262,7 +262,7 @@
             pointer-events: none;
         }
 
-        /* Katman 2: Üzerine Tam Oturan T?klanabilir Katman */
+        /* Layer 2: Master Overlay Container */
         .medallion-clickable-overlay {
             position: absolute;
             top: 0;
@@ -275,14 +275,14 @@
             align-items: center;
         }
 
-        /* Katman 2b: Sürekli Dönen Etkinle?tirme Madalyonu */
+        /* Layer 2b: Interactive Spinning Trigger Button Asset */
         .medallion-spinning-asset {
-            width: 32%; /* Ba?l???n alt?ndaki hilal ???k çizgisine kusursuz oturmas? için ölçek */
+            width: 32%; 
             height: auto;
             cursor: pointer;
             outline: none !important;
             -webkit-tap-highlight-color: transparent;
-            margin-top: 18%; /* Madalyonu tam olarak parlama yay?na oturtmak için a?a?? çeker */
+            margin-top: 18%; 
             animation: spinArtifact 25s linear infinite;
             transition: filter 0.5s ease;
         }
@@ -300,7 +300,7 @@
             filter: drop-shadow(0 0 20px rgba(89, 229, 214, 0.95)) brightness(1.2);
         }
 
-        /* Alt Navigasyon Kontrol Paneli Alan? */
+        /* Lower Navigation Dashboard Panel System */
         .dashboard-content {
             width: 100%;
             padding: 30px 40px;
@@ -326,7 +326,7 @@
             margin: 0;
         }
 
-        /* Dinamik E-posta Kay?t Alan? Paneli */
+        /* Dynamic Hidden Input Area Container */
         .email-reveal-zone {
             max-height: 0;
             opacity: 0;
@@ -378,7 +378,7 @@
             font-weight: 500;
         }
 
-        /* 5 Sütunlu YouTube Oynat?c? Izgaras? */
+        /* Pure Black Video Panel layout tracking 5 grid columns natively */
         .video-panel {
             background-color: #000000;
             border: 2px solid #59e5d6; 
@@ -408,7 +408,7 @@
             border: none;
         }
 
-        /* Mobil Cihazlar ?çin Uyarl?k Kurallar? */
+        /* Smart-Stacking Rules For Mobile Phone Screens */
         @media (max-width: 768px) {
             .wrapper {
                 margin: 15px auto;
@@ -460,9 +460,12 @@
                 margin: 0 auto;
             }
         }
+    </style>
+</head>
+<body>
     <div class="wrapper">
         
-        <!-- --- P?KSEL KUSURSUZ KAHRAMAN SAHNES? (GÜNCELLENEN ANA GÖVDE) --- -->
+        <!-- --- P?KSEL KUSURSUZ KAHRAMAN SAHNES? --- -->
         <div class="hero-theater">
             
             <!-- Payla??lan Kanvas E?leme Alan? -->
@@ -611,3 +614,5 @@
             });
         }
     </script>
+</body>
+</html>
