@@ -60,6 +60,8 @@
             gap: 15px;
             width: 100%;
             max-width: 700px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Uniform Wide Title Scaling */
@@ -287,7 +289,7 @@
             align-items: center;
             flex-shrink: 0;
             width: 100%;
-            /* Fixed negative margin: centers original-sized medallion beautifully over moon cutout layout */
+            /* Relative margin overlap pulls original size up smoothly */
             margin-top: -125px; 
             margin-bottom: 0px;
             position: relative;
@@ -300,11 +302,10 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            /* Physical space padding holds popup zone stably without pushing elements below */
             padding-bottom: 75px; 
         }
 
-        /* Clean original design bounds setup; completely transparent flat base background layout */
+        /* Original compact scale returned cleanly; background artifacts stripped */
         .medallion-container {
             position: relative;
             width: clamp(240px, 32vw, 340px);
@@ -333,19 +334,17 @@
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /* Golden hover drop-shadow bloom remains perfectly active */
         .medallion-trigger-btn:hover {
             transform: scale(1.06);
             filter: drop-shadow(0 0 15px rgba(210, 154, 57, 0.85)) drop-shadow(0 0 25px rgba(89, 229, 214, 0.5));
         }
 
-        /* High-intensity teal flash effect remains perfectly active on click state */
         .medallion-trigger-btn.activated {
             transform: rotate(20deg) scale(1.03);
             filter: drop-shadow(0 0 25px rgba(89, 229, 214, 0.98)) drop-shadow(0 0 40px rgba(210, 154, 57, 0.5));
         }
 
-        /* Absolute positioning isolates input banner completely so it never pushes or shifts elements */
+        /* Absolute positioning anchors reveal text cleanly below layout rules */
         .email-reveal-zone {
             position: absolute;
             bottom: 0;
@@ -443,7 +442,7 @@
             }
 
             .medallion-box {
-                margin-top: -60px;
+                margin-top: -65px;
             }
 
             .kindle-promo {
@@ -486,7 +485,7 @@
 </head>
 <body>
 
-    <div class="wrapper">
+<div class="wrapper">
         <!-- Centered Header Row Section -->
         <div class="header-panel">
             <div class="header-left">
@@ -495,7 +494,7 @@
                 <p>Official Page (Under Construction)</p>
             </div>
 
-            <!-- Custom Centered Interactive Artifact Box with Light Flare Glow -->
+            <!-- Custom Centered Interactive Artifact Box with Negative Flow Overlaps -->
             <div class="medallion-box">
                 <div class="artifact-portal">
                     <div class="medallion-container">
