@@ -35,71 +35,28 @@
             box-sizing: border-box;
         }
 
-        /* Compact Header with Uniform 360° Outer Yersu Teal Glow and 80% Opacity */
-        .header-panel {
-            background-color: rgba(0, 0, 0, 0.8);
-            border: 2px solid #59e5d6; 
-            box-shadow: 0 0 25px #59e5d6; 
-            border-radius: 4px;
-            padding: 25px 40px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            min-height: 220px;
-            box-sizing: border-box;
-        }
-
-        /* Expanded Left Container to give your Title Image full clearance */
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 12px;
-            flex-grow: 1;
-            max-width: 65%;
-        }
-
-        /* Uniform Wide Title Scaling */
-        .brand-headline {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        /* Small text placement formatting */
-        .header-left p {
-            margin: 0;
-            font-size: 1.05rem;
-            color: #8fa3a6;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
         /* Clickable Golden Kindle Promo Banner Link */
         .kindle-promo-link {
             text-decoration: none;
             display: inline-block;
-            align-self: flex-start;
         }
 
         .kindle-promo {
-            margin: 5px 0;
+            margin: 0;
             font-size: 1.25rem;
             color: #d29a39; 
             font-weight: 800;
             letter-spacing: 1.5px;
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         /* Hover glow effect for the big orange text line */
         .kindle-promo-link:hover .kindle-promo {
             color: #ffbe4a;
             text-shadow: 0 0 20px rgba(210, 154, 57, 0.95);
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
 
         /* Seamless Row of Compact Storefront Navigation Icons */
@@ -187,7 +144,6 @@
             border: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         /* Hover state: Gold glow anchor (Matching Amazon/Gumroad) */
         .icon-link.globalcomix-btn:hover {
             box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
@@ -199,6 +155,7 @@
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
+        
         /* --- THE GIANT YERSU CIRCULAR TOOLTIP ENGINE --- */
         .custom-tooltip-wrapper {
             position: relative;
@@ -209,19 +166,15 @@
             visibility: hidden;
             opacity: 0;
             position: absolute;
-            bottom: 140%; /* Floats perfectly clearing your icon space */
+            bottom: 140%; 
             left: 50%;
             transform: translateX(-50%) translateY(15px);
-            
-            /* Structural Blueprint for a perfect giant circular bubble container */
             background-color: #000000;
-            border: 2px solid #59e5d6; /* Sharp Yersu Teal Boundary Ring */
+            border: 2px solid #59e5d6; 
             box-shadow: 0 0 20px rgba(89, 229, 214, 0.4);
-            border-radius: 50px; /* Forces layout edges into a long smooth capsule ellipse */
-            padding: 15px 35px; /* Deep safety padding to isolate text inside the oval curve */
-            
-            /* Typography: Matches the exact scale and weight of your primary gold header line */
-            color: #59e5d6; /* Glowing Yersu Teal Text */
+            border-radius: 50px; 
+            padding: 15px 35px; 
+            color: #59e5d6; 
             font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: 1.5px;
@@ -232,7 +185,6 @@
             transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
         }
 
-        /* Reveal Animation Mechanism */
         .custom-tooltip-wrapper:hover .yersu-tooltip-text {
             visibility: visible;
             opacity: 1;
@@ -250,86 +202,131 @@
         }
 
         .info-panel ul {
-    margin: 0;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+            margin: 0;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.info-panel li {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d29a39;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-}
+        .info-panel li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d29a39;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+        }
 
-.info-panel li strong {
-    color: #59e5d6;
-    text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
-}
+        .info-panel li strong {
+            color: #59e5d6;
+            text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
+        }
 
-.info-panel p {
-    margin: 20px 0 0 0;
-    font-size: 1.1rem;
-    color: #d29a39;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        .info-panel p {
+            margin: 20px 0 0 0;
+            font-size: 1.1rem;
+            color: #d29a39;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-        /* --- ARTIFACT PORTAL INTERFACE SYSTEM --- */
-        .medallion-box {
+        /* --- THE THEATER HOUSING (KR?T?K DÜZENLEME) --- */
+        .hero-theater {
+            position: relative;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 25px #59e5d6;
+            border-radius: 4px;
+            overflow: hidden;
+            display: block; /* Eski çak??an esnek kutu (flex) kurallar?n? s?f?rlar */
+            box-sizing: border-box;
+            padding: 20px 0 0 0;
+        }
+
+        /* Ortak Kanvas Hizalama Alan? */
+        .portal-canvas {
+            position: relative;
+            width: 100%;
+            max-width: 1000px; /* Photoshop ana kanvas geni?li?inize göre buray? güncelleyin */
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Katman 1: Sabit Ba?l?k Logosu Grafi?i */
+        .headline-base-layer {
+            display: block;
+            width: 100%;
+            height: auto;
+            pointer-events: none;
+        }
+
+        /* Katman 2: Üzerine Tam Oturan T?klanabilir Katman */
+        .medallion-clickable-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-shrink: 0;
-            min-height: 240px;
         }
 
-        .artifact-portal {
+        /* Katman 2b: Sürekli Dönen Etkinle?tirme Madalyonu */
+        .medallion-spinning-asset {
+            width: 32%; /* Ba?l???n alt?ndaki hilal ???k çizgisine kusursuz oturmas? için ölçek */
+            height: auto;
+            cursor: pointer;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
+            margin-top: 18%; /* Madalyonu tam olarak parlama yay?na oturtmak için a?a?? çeker */
+            animation: spinArtifact 25s linear infinite;
+            transition: filter 0.5s ease;
+        }
+
+        @keyframes spinArtifact {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .medallion-spinning-asset:hover {
+            filter: drop-shadow(0 0 15px rgba(210, 154, 57, 0.85));
+        }
+
+        .medallion-spinning-asset.activated {
+            filter: drop-shadow(0 0 20px rgba(89, 229, 214, 0.95)) brightness(1.2);
+        }
+
+        /* Alt Navigasyon Kontrol Paneli Alan? */
+        .dashboard-content {
+            width: 100%;
+            padding: 30px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-        }
-
-        .medallion-container {
+            gap: 15px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.95);
             position: relative;
-            width: clamp(220px, 28vw, 320px);
-            height: clamp(220px, 28vw, 320px);
+            z-index: 15;
+            border-top: 1px solid rgba(89, 229, 214, 0.15);
         }
 
-        .medallion-trigger-btn {
-            width: 100%;
-            height: 100%;
-            background-image: url('runic-medallion.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none !important;
-            padding: 0 !important;
-            cursor: pointer;
-            background-color: transparent;
-            -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            -webkit-tap-highlight-color: transparent;
-            outline: none !important;
-            transition: transform 0.5s ease, filter 0.5s ease;
+        .artifact-instruction-text {
+            font-size: 0.95rem;
+            color: #d29a39; 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+            text-align: center;
+            margin: 0;
         }
 
-        .medallion-trigger-btn:hover {
-            transform: scale(1.04);
-            filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
-        }
-
-        .medallion-trigger-btn.activated {
-            transform: rotate(20deg) scale(1.02);
-            filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
-        }
-
-        /* Dynamic Hidden Input Area Container */
+        /* Dinamik E-posta Kay?t Alan? Paneli */
         .email-reveal-zone {
             max-height: 0;
             opacity: 0;
@@ -338,6 +335,7 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            margin-top: 5px;
         }
 
         .email-reveal-zone.show {
@@ -349,12 +347,12 @@
             background-color: rgba(0, 0, 0, 0.85);
             border: 2px solid #59e5d6;
             border-radius: 4px;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: #ffffff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             letter-spacing: 2px;
             text-align: center;
-            width: 240px;
+            width: 280px;
             outline: none;
             box-shadow: 0 0 10px rgba(89, 229, 214, 0.2);
         }
@@ -364,17 +362,23 @@
             border-color: #ffffff;
         }
 
-        .artifact-instruction-text {
-            font-size: 0.8rem;
-            color: #d29a39; 
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-            text-align: center;
+        .dashboard-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
         }
 
-        /* Pure Black Video Panel layout tracking 5 grid columns natively */
+        .dashboard-meta p {
+            margin: 0;
+            font-size: 1rem;
+            color: #8fa3a6;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* 5 Sütunlu YouTube Oynat?c? Izgaras? */
         .video-panel {
             background-color: #000000;
             border: 2px solid #59e5d6; 
@@ -404,39 +408,36 @@
             border: none;
         }
 
-        /* Smart-Stacking Rules For Mobile Phone Screens */
+        /* Mobil Cihazlar ?çin Uyarl?k Kurallar? */
         @media (max-width: 768px) {
             .wrapper {
                 margin: 15px auto;
                 gap: 20px;
             }
 
-            .header-panel {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 30px 20px;
-                gap: 25px;
-            }
-            .header-left {
-                max-width: 100%;
-                align-items: center;
+            .medallion-spinning-asset {
+                width: 50%;
+                margin-top: 25%;
             }
 
-            .brand-headline {
-                max-width: 320px;
+            .dashboard-content {
+                padding: 20px 15px;
+            }
+
+            .dashboard-meta {
+                gap: 15px;
             }
 
             .kindle-promo {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
                 text-align: center;
             }
 
-            /* Stack tooltip cleanly underneath on narrow vertical viewports */
             .yersu-tooltip-text {
                 font-size: 1rem;
                 padding: 10px 20px;
                 white-space: normal;
-                width: 250px;
+                width: 230px;
                 text-align: center;
                 border-radius: 20px;
             }
@@ -449,10 +450,6 @@
                 font-size: 1rem;
             }
 
-            .medallion-box {
-                min-height: auto;
-            }
-
             .video-panel {
                 grid-template-columns: 1fr;
                 padding: 20px;
@@ -463,64 +460,72 @@
                 margin: 0 auto;
             }
         }
-    </style>
-</head>
-<body>
     <div class="wrapper">
-        <!-- Header Row Section -->
-        <div class="header-panel">
-            <div class="header-left">
-                <!-- Main Comic Logo Layout Anchor -->
-                <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
-                <p>Official Page (Under Construction)</p>
+        
+        <!-- --- P?KSEL KUSURSUZ KAHRAMAN SAHNES? (GÜNCELLENEN ANA GÖVDE) --- -->
+        <div class="hero-theater">
+            
+            <!-- Payla??lan Kanvas E?leme Alan? -->
+            <div class="portal-canvas">
+                <!-- Katman 1: Merkezi Ba?l?k Logosu (I??k hüzmeleri ve sabit hilal ???k efekti dahildir) -->
+                <img src="headline-logo.png" alt="Waters of Yersu" class="headline-base-layer">
                 
-                <!-- Gold Kindle Notification Alert (Static Text Only) -->
-                <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
-                
-                <!-- Compact Checkout Navigation Badges -->
-                <div class="icon-bar">
-                    <!-- Amazon Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
-                    </div>
-
-                    <!-- Gumroad Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
-                    </div>
-
-                    <!-- GlobalComix Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
-                    </div>
-                    
-                    <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
-                    <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
+                <!-- Katman 2: Ayn? Boyutlardaki T?klanabilir Katman Konteyneri -->
+                <div class="medallion-clickable-overlay">
+                    <!-- Katman 2b: Dönen Madalyon ?nteraktif Tetikleyici Görseli -->
+                    <img src="runic-medallion.png" id="artifactBtn" class="medallion-spinning-asset" alt="Click to activate artifact" title="Click to activate artifact">
                 </div>
             </div>
 
-            <!-- Custom Interactive Artifact Box Anchor Point -->
-            <div class="medallion-box">
-                <div class="artifact-portal">
-                    <div class="medallion-container">
-                        <button type="button" id="artifactBtn" class="medallion-trigger-btn" title="Click to activate artifact"></button>
-                    </div>
+            <!-- Alt Navigasyon Kontrol Paneli (Görsellerin hemen alt?nda pürüzsüzce birle?ir) -->
+            <div class="dashboard-content">
+                
+                <h2 class="artifact-instruction-text">Activate the artifact to reach Yersu</h2>
+                
+                <!-- Dinamik E-posta Kay?t Alan? -->
+                <div id="revealZone" class="email-reveal-zone">
+                    <form id="topEmailForm" action="#" method="POST">
+                        <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
+                    </form>
+                </div>
+
+                <!-- Genel Bilgi ve Link Sat?rlar? -->
+                <div class="dashboard-meta">
+                    <p>Official Page (Under Construction)</p>
                     
-                    <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
-                    
-                    <div id="revealZone" class="email-reveal-zone">
-                        <form id="topEmailForm" action="#" method="POST">
-                            <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
-                        </form>
+                    <a href="#" class="kindle-promo-link">
+                        <h3 class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</h3>
+                    </a>
+
+                    <!-- Navigasyon ?konlar? Dizilimi -->
+                    <div class="icon-bar">
+                        <!-- Amazon Kindle Butonu -->
+                        <div class="custom-tooltip-wrapper">
+                            <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
+                            <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
+                        </div>
+
+                        <!-- Gumroad Butonu -->
+                        <div class="custom-tooltip-wrapper">
+                            <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
+                            <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
+                        </div>
+
+                        <!-- GlobalComix Butonu -->
+                        <div class="custom-tooltip-wrapper">
+                            <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
+                            <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
+                        </div>
+                        
+                        <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
+                        <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <!-- New Reader Informational Box Panel -->
+        <!-- Okuyucu Bilgilendirme Paneli -->
         <div class="info-panel">
             <ul>
                 <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
@@ -530,7 +535,7 @@
             <p>The corresponding navigation icons are located above. I hope you enjoy the journey!</p>
         </div>
 
-        <!-- 5-Column True Native Embed YouTube Player Grid -->
+        <!-- 5 Sütunlu YouTube Oynat?c? Izgaras? -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe id="vidEmbed1" src="" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
@@ -551,10 +556,9 @@
 
     </div>
 
-    <!-- Central URL Routing System -->
+    <!-- Merkezi Dinamik Link Yönlendirme Sistemi -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Securely grab elements or provide fallbacks to prevent fatal script halts
             const getUrl = (id) => {
                 const el = document.getElementById(id);
                 return el ? el.innerText.trim() : "";
@@ -573,7 +577,6 @@
             const v4 = getUrl("urlVid4");
             const v5 = getUrl("urlVid5");
 
-            // Safely inject them into your layout elements automatically
             if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
             if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
             if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
@@ -588,10 +591,10 @@
             if(document.getElementById("vidEmbed5")) document.getElementById("vidEmbed5").src = v5;
         });
 
-        // Medallion Animation Logic
+        // Madalyon Animasyon ve Aç?l?? Mant???
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
-        const artifactPortal = document.querySelector('.artifact-portal');
+        const heroTheater = document.querySelector('.hero-theater');
 
         if (artifactBtn && revealZone) {
             artifactBtn.addEventListener('click', (e) => {
@@ -601,36 +604,10 @@
             });
 
             document.addEventListener('click', (e) => {
-                if (artifactPortal && !artifactPortal.contains(e.target)) {
+                if (heroTheater && !heroTheater.contains(e.target)) {
                     artifactBtn.classList.remove('activated');
                     revealZone.classList.remove('show');
                 }
             });
         }
     </script>
-
-    <!--
-    =======================================================================
-                   CENTRAL MASTER URL DIRECTORY
-    =======================================================================
-    Highlight the plain text content inside the <span> nodes below and 
-    replace with your real deep links to fill the whole app ecosystem!
-    =======================================================================
-    -->
-    <div style="display: none !important;" aria-hidden="true">
-        <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
-        <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
-        <span id="urlGlobalComix">https://globalcomix.com/a/waters-of-yersu</span>
-        <span id="urlDiscord">https://discord.com</span>
-        <span id="urlContact">https://contact.me</span>
-        
-        <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
-        
-        <span id="urlVid1">https://www.youtube.com/embed/YaLCYzmp5LM</span>
-        <span id="urlVid2">https://www.youtube.com/embed/j2OkPtxXWt8</span>
-        <span id="urlVid3">https://www.youtube.com/embed/4c9W6motNRw</span>
-        <span id="urlVid4">https://www.youtube.com/embed/ps6LxT-VKOc</span>
-        <span id="urlVid5">https://www.youtube.com/embed/MyZd_Buecq8</span>
-    </div>
-</body>
-</html>
