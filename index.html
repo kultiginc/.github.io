@@ -50,28 +50,30 @@
         }
 
         /* ANCHOR SQUARE STAGE: Dictates the true physical boundary of the artwork */
+                /* ANCHOR SQUARE STAGE: Expanded to massive width bounds to restore title scale */
         .hero-composite-stage {
             position: relative;
             width: 100%;
-            max-width: 450px; /* Controls how large your square artwork block renders on screen */
-            aspect-ratio: 1 / 1; /* Guarantees a strict square coordinate workspace */
+            max-width: 1200px; /* Bleeds wide across your header panel container */
+            aspect-ratio: 2.5 / 1; /* Fluid wide perspective tracks your banner dimension */
             margin: 0 auto;
         }
 
-        /* The Base Square Title Artwork */
+        /* The Base Title Artwork: Scaled up to 100% of the newly expanded workspace */
         .brand-headline {
             width: 100%;
             height: 100%;
             display: block;
             object-fit: contain;
         }
-        /* Absolute position forces medallion to hover over the crescent within the image bounds */
+
+        /* Absolute position forces medallion to anchor flawlessly into the wide crop space */
         .medallion-box {
             position: absolute;
-            top: 48%; /* Moves medallion up/down precisely inside your target square area */
+            top: 72%; /* Drop coordinates cleanly alignment center over crescent moon cutoff */
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 65%; /* Adapts dynamically to sit perfectly over the cutout area */
+            width: clamp(260px, 24vw, 440px); /* Locks your giant circular asset size natively */
             z-index: 5;
         }
 
