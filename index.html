@@ -463,36 +463,36 @@
     </style>
 </head>
 <body>
-    <div class="wrapper">
+        <div class="wrapper">
         
-        <!-- --- P?KSEL KUSURSUZ KAHRAMAN SAHNES? --- -->
+        <!-- --- PERFECTLY CENTERED HERO THEATER SYSTEM --- -->
         <div class="hero-theater">
             
-            <!-- Payla??lan Kanvas E?leme Alan? -->
+            <!-- Rigid Positioning Canvas Frame -->
             <div class="portal-canvas">
-                <!-- Katman 1: Merkezi Ba?l?k Logosu (I??k hüzmeleri ve sabit hilal ???k efekti dahildir) -->
+                <!-- Layer 1: Structural Background Floor (Keeps layout at fixed geometric proportions) -->
                 <img src="headline-logo.png" alt="Waters of Yersu" class="headline-base-layer">
                 
-                <!-- Katman 2: Ayn? Boyutlardaki T?klanabilir Katman Konteyneri -->
+                <!-- Layer 2: Master Alignment Overlay Shield -->
                 <div class="medallion-clickable-overlay">
-                    <!-- Katman 2b: Dönen Madalyon ?nteraktif Tetikleyici Görseli -->
+                    <!-- Layer 2b: Motionlocked Medallion Button Asset (Stopped continuous spinning) -->
                     <img src="runic-medallion.png" id="artifactBtn" class="medallion-spinning-asset" alt="Click to activate artifact" title="Click to activate artifact">
                 </div>
             </div>
 
-            <!-- Alt Navigasyon Kontrol Paneli (Görsellerin hemen alt?nda pürüzsüzce birle?ir) -->
+            <!-- Lower Navigation Dashboard Panel (Merges smoothly directly beneath your artwork) -->
             <div class="dashboard-content">
                 
                 <h2 class="artifact-instruction-text">Activate the artifact to reach Yersu</h2>
                 
-                <!-- Dinamik E-posta Kay?t Alan? -->
+                <!-- Isolated Email Reveal Zone - Stays safely down here so medallion remains completely still -->
                 <div id="revealZone" class="email-reveal-zone">
                     <form id="topEmailForm" action="#" method="POST">
                         <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
                     </form>
                 </div>
 
-                <!-- Genel Bilgi ve Link Sat?rlar? -->
+                <!-- Comprehensive Storefront Action Meta Information Row -->
                 <div class="dashboard-meta">
                     <p>Official Page (Under Construction)</p>
                     
@@ -500,21 +500,21 @@
                         <h3 class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</h3>
                     </a>
 
-                    <!-- Navigasyon ?konlar? Dizilimi -->
+                    <!-- Navigational Anchor Badge Arrangement Row -->
                     <div class="icon-bar">
-                        <!-- Amazon Kindle Butonu -->
+                        <!-- Amazon Kindle Store Button -->
                         <div class="custom-tooltip-wrapper">
                             <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
                             <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
                         </div>
 
-                        <!-- Gumroad Butonu -->
+                        <!-- Gumroad Digital Store Button -->
                         <div class="custom-tooltip-wrapper">
                             <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
                             <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
                         </div>
 
-                        <!-- GlobalComix Butonu -->
+                        <!-- GlobalComix Independent Store Button -->
                         <div class="custom-tooltip-wrapper">
                             <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
                             <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
@@ -528,7 +528,7 @@
             </div>
         </div>
 
-        <!-- Okuyucu Bilgilendirme Paneli -->
+        <!-- Informational User Box Interface Panel -->
         <div class="info-panel">
             <ul>
                 <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
@@ -538,7 +538,7 @@
             <p>The corresponding navigation icons are located above. I hope you enjoy the journey!</p>
         </div>
 
-        <!-- 5 Sütunlu YouTube Oynat?c? Izgaras? -->
+        <!-- 5-Column True Native Embed YouTube Player Grid Layer Layout -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe id="vidEmbed1" src="" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
@@ -559,7 +559,7 @@
 
     </div>
 
-    <!-- Merkezi Dinamik Link Yönlendirme Sistemi -->
+    <!-- Central Link Routing and Non-Disruptive Transition Logic System -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const getUrl = (id) => {
@@ -594,18 +594,20 @@
             if(document.getElementById("vidEmbed5")) document.getElementById("vidEmbed5").src = v5;
         });
 
-        // Madalyon Animasyon ve Aç?l?? Mant???
+        // Stabilized Interaction Logic Mechanics
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
         const heroTheater = document.querySelector('.hero-theater');
 
         if (artifactBtn && revealZone) {
+            // Click Handler locks medallion scaling state and unlocks input drawer below
             artifactBtn.addEventListener('click', (e) => {
                 e.stopPropagation(); 
                 artifactBtn.classList.toggle('activated');
                 revealZone.classList.toggle('show');
             });
 
+            // Outer Click Handler closes input drawer cleanly without jumping layouts around
             document.addEventListener('click', (e) => {
                 if (heroTheater && !heroTheater.contains(e.target)) {
                     artifactBtn.classList.remove('activated');
