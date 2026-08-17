@@ -2,30 +2,45 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="runic-medallion.png">
-    <!-- Required transparent overlay asset: shine.png -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waters of Yersu - Official Page</title>
+
     <style>
-        /* Base Page Setup & Epic Yersu Background */
+        /* ================================================================
+           WATERS OF YERSU - MASTER PAGE
+           ================================================================
+           Artwork files:
+             headline-logo.png  = title + title glow
+             runic-medallion.png = actual clickable artifact
+             shine.png           = fixed light painted ON the artifact
+
+           The three PNGs are expected to come from the SAME Photoshop
+           canvas. The medallion and shine therefore use the same box,
+           position and scale so their artwork stays registered.
+
+           IMPORTANT:
+           The shine is intentionally NOT rotated. The medallion rotates
+           underneath it.
+           ================================================================ */
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             background-image: url('yersu-bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            width: 100%;
-            min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: #ffffff;
         }
 
-        /* The Main Layout Shield Wrapper */
         .wrapper {
             width: 95%;
             max-width: 1100px;
@@ -33,84 +48,273 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            box-sizing: border-box;
         }
 
-        /* Centered desktop header composition */
-        .header-panel {
-            background-color: rgba(0, 0, 0, 0.8);
+        /* ================================================================
+           HERO
+           ================================================================ */
+
+        .hero-panel {
+            position: relative;
+            width: 100%;
+            min-height: 720px;
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid #59e5d6;
             box-shadow: 0 0 25px #59e5d6;
             border-radius: 4px;
-            padding: 30px 40px 45px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            min-height: 620px;
-            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        /*
+           This is the visual coordinate system for the three transparent
+           Photoshop PNGs.
+
+           Keeping the artwork inside ONE coordinate system is the important
+           part. The title and artifact are no longer two flex columns that
+           have to be aligned against each other.
+        */
+        .hero-artboard {
             position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 720px;
+            overflow: visible;
         }
 
-        /* Centered title/text/navigation column */
-        .header-left {
-            width: min(100%, 760px);
+        /*
+           Title artwork.
+           The PNG itself contains its title glow.
+        */
+        .hero-headline-layer {
+            position: absolute;
+            left: 50%;
+            top: 7%;
+            width: 62%;
+            height: auto;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: block;
+        }
+
+        /*
+           Common coordinate system for medallion + shine.
+
+           The values below are deliberately shared. Since both PNGs came
+           from the same Photoshop canvas, changing this box moves BOTH
+           artwork layers together.
+        */
+        .artifact-stack {
+            position: absolute;
+            left: 50%;
+            top: 56%;
+            width: 60%;
+            aspect-ratio: 1 / 1;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            overflow: visible;
+        }
+
+        /*
+           Both PNGs occupy the exact same transparent canvas.
+           scale(2) compensates for the transparent Photoshop canvas
+           surrounding the visible artwork.
+
+           DO NOT give shine a separate position.
+        */
+        .hero-medallion-layer,
+        .hero-shine-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: fill;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            transform: scale(2);
+        }
+
+        /*
+           The actual artifact is underneath the fixed shine.
+           The transform-origin matches the stack's center.
+        */
+        .hero-medallion-layer {
+            z-index: 1;
+            transform-origin: 50% 50%;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        /*
+           Fixed light painted ON the artifact.
+
+           It does NOT rotate.
+           It does NOT receive hover/activation transforms.
+        */
+        .hero-shine-layer {
+            z-index: 2;
+            transform-origin: 50% 50%;
+        }
+
+        /*
+           Transparent clickable area.
+           This is intentionally independent of the PNG layers.
+           It stays centered even while the visual artifact rotates.
+        */
+        .hero-artifact-hitbox {
+            position: absolute;
+            left: 50%;
+            top: 56%;
+            width: 46%;
+            aspect-ratio: 1 / 1;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .hero-artifact-hitbox:focus-visible {
+            outline: 2px solid #59e5d6;
+            outline-offset: 6px;
+            border-radius: 50%;
+        }
+
+        /*
+           Hover effect applies ONLY to the moving artifact.
+
+           Normal scale is 2.
+           4% larger than that is 2.08.
+        */
+        .hero-artboard:hover .hero-medallion-layer {
+            transform: scale(2.08);
+            filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
+        }
+
+        /*
+           Activated state:
+             20 degree clockwise rotation
+             2% enlargement
+
+           2 x 1.02 = 2.04
+        */
+        .hero-artboard.artifact-active .hero-medallion-layer {
+            transform: rotate(20deg) scale(2.04);
+            filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
+        }
+
+        /*
+           The instruction text sits in normal layout space BELOW the
+           artifact. The email box does NOT participate in the position
+           of the artifact, so opening it cannot push the medallion upward.
+        */
+        .artifact-instruction-text {
+            position: absolute;
+            left: 50%;
+            top: 91%;
+            transform: translateX(-50%);
+            width: 90%;
+            font-size: 0.8rem;
+            color: #d29a39;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+            text-align: center;
+            z-index: 4;
+        }
+
+        /*
+           Popup email zone is ABSOLUTELY positioned.
+           Therefore it appears below the artifact without changing the
+           artifact's position.
+        */
+        .email-reveal-zone {
+            position: absolute;
+            left: 50%;
+            top: 95%;
+            transform: translateX(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 5;
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .email-reveal-zone.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .runic-input {
+            width: min(240px, 80vw);
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #59e5d6;
+            border-radius: 4px;
+            padding: 10px 15px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-align: center;
+            outline: none;
+            box-shadow: 0 0 10px rgba(89, 229, 214, 0.2);
+        }
+
+        .runic-input:focus {
+            box-shadow: 0 0 15px rgba(89, 229, 214, 0.6);
+            border-color: #ffffff;
+        }
+
+        /* ================================================================
+           HEADER / STORE NAVIGATION
+           ================================================================ */
+
+        .hero-navigation {
+            position: absolute;
+            left: 50%;
+            bottom: 4%;
+            transform: translateX(-50%);
+            width: 90%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            gap: 12px;
-            text-align: center;
+            gap: 10px;
+            z-index: 6;
         }
 
-        /* Uniform Wide Title Scaling */
-        .brand-headline {
-            width: min(100%, 720px);
-            max-width: 720px;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            margin: 0 auto;
-        }
-
-        /* Small text placement formatting */
-        .header-left p {
+        .hero-navigation p {
             margin: 0;
             font-size: 1.05rem;
             color: #8fa3a6;
             letter-spacing: 1px;
             font-weight: 500;
-        }
-
-        /* Clickable Golden Kindle Promo Banner Link */
-        .kindle-promo-link {
-            text-decoration: none;
-            display: inline-block;
-            align-self: center;
+            text-align: center;
         }
 
         .kindle-promo {
-            margin: 5px 0;
+            margin: 0;
             font-size: 1.25rem;
-            color: #d29a39; 
+            color: #d29a39;
             font-weight: 800;
             letter-spacing: 1.5px;
             text-shadow: 0 0 10px rgba(210, 154, 57, 0.4);
-            transition: all 0.3s ease;
+            text-align: center;
         }
 
-        /* Hover glow effect for the big orange text line */
-        .kindle-promo-link:hover .kindle-promo {
-            color: #ffbe4a;
-            text-shadow: 0 0 20px rgba(210, 154, 57, 0.95);
-            transform: scale(1.01);
-        }
-
-        /* Seamless Row of Compact Storefront Navigation Icons */
         .icon-bar {
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 15px;
-            margin-top: 5px;
         }
 
         .icon-link {
@@ -127,83 +331,47 @@
             font-weight: bold;
             font-size: 0.9rem;
             background: transparent;
-            box-sizing: border-box;
         }
 
-        /* Hover Behavior for standard buttons */
         .icon-link:hover {
             border-color: #59e5d6;
             color: #59e5d6;
-            box-shadow: 0 0 12px #59e5d6; 
+            box-shadow: 0 0 12px #59e5d6;
             transform: translateY(-2px);
         }
 
-        /* Custom Medallion App Icon Configuration for Amazon */
+        .icon-link.amazon-btn,
+        .icon-link.gumroad-btn,
+        .icon-link.globalcomix-btn {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+        }
+
         .icon-link.amazon-btn {
             background-image: url('amazon-icon.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Hover state: Gold glow anchor */
-        .icon-link.amazon-btn:hover {
-            box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
-            transform: scale(1.05) translateY(-2px);
-        }
-
-        /* Click state: Pure high-intensity Yersu teal flash */
-        .icon-link.amazon-btn:active {
-            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
-            transform: scale(0.98);
-        }
-
-        /* Custom Medallion App Icon Configuration for Gumroad */
         .icon-link.gumroad-btn {
             background-image: url('gumroad-icon.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Hover state: Gold glow anchor (Matching Amazon) */
-        .icon-link.gumroad-btn:hover {
-            box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
-            transform: scale(1.05) translateY(-2px);
-        }
-
-        /* Click state: Pure high-intensity Yersu teal flash (Matching Amazon) */
-        .icon-link.gumroad-btn:active {
-            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
-            transform: scale(0.98);
-        }
-
-        /* Custom Medallion App Icon Configuration for GlobalComix */
         .icon-link.globalcomix-btn {
             background-image: url('globalcomix.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Hover state: Gold glow anchor (Matching Amazon/Gumroad) */
+        .icon-link.amazon-btn:hover,
+        .icon-link.gumroad-btn:hover,
         .icon-link.globalcomix-btn:hover {
             box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
             transform: scale(1.05) translateY(-2px);
         }
 
-        /* Click state: Pure high-intensity Yersu teal flash (Matching Amazon/Gumroad) */
-        .icon-link.globalcomix-btn:active {
-            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
-            transform: scale(0.98);
-        }
-        /* --- THE GIANT YERSU CIRCULAR TOOLTIP ENGINE --- */
+        /* ================================================================
+           STORE TOOLTIP
+           ================================================================ */
+
         .custom-tooltip-wrapper {
             position: relative;
             display: inline-block;
@@ -213,19 +381,15 @@
             visibility: hidden;
             opacity: 0;
             position: absolute;
-            bottom: 140%; /* Floats perfectly clearing your icon space */
+            bottom: 140%;
             left: 50%;
             transform: translateX(-50%) translateY(15px);
-            
-            /* Structural Blueprint for a perfect giant circular bubble container */
             background-color: #000000;
-            border: 2px solid #59e5d6; /* Sharp Yersu Teal Boundary Ring */
+            border: 2px solid #59e5d6;
             box-shadow: 0 0 20px rgba(89, 229, 214, 0.4);
-            border-radius: 50px; /* Forces layout edges into a long smooth capsule ellipse */
-            padding: 15px 35px; /* Deep safety padding to isolate text inside the oval curve */
-            
-            /* Typography: Matches the exact scale and weight of your primary gold header line */
-            color: #59e5d6; /* Glowing Yersu Teal Text */
+            border-radius: 50px;
+            padding: 15px 35px;
+            color: #59e5d6;
             font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: 1.5px;
@@ -236,225 +400,62 @@
             transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
         }
 
-        /* Reveal Animation Mechanism */
         .custom-tooltip-wrapper:hover .yersu-tooltip-text {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
 
-        /* --- NEW READERS INFO TEXT BOX PANEL (80% Opacity) --- */
+        /* ================================================================
+           INFORMATION PANEL
+           ================================================================ */
+
         .info-panel {
-            background-color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid #59e5d6;
             box-shadow: 0 0 25px rgba(89, 229, 214, 0.3);
             border-radius: 4px;
             padding: 30px 40px;
-            box-sizing: border-box;
         }
 
         .info-panel ul {
-    margin: 0;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.info-panel li {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d29a39;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-}
-
-.info-panel li strong {
-    color: #59e5d6;
-    text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
-}
-
-.info-panel p {
-    margin: 20px 0 0 0;
-    font-size: 1.1rem;
-    color: #d29a39;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-        /* --- ARTIFACT / FULL-CANVAS PNG ALIGNMENT SYSTEM --- */
-        /*
-         * All three exported PNGs come from the same Photoshop canvas:
-         * 3675 x 3487 px at 600 DPI.
-         * Keeping them as identical full-canvas layers preserves their
-         * Photoshop coordinates on the website.
-         */
-        .hero-artboard {
-            position: relative;
-            width: min(100%, 720px);
-            aspect-ratio: 3675 / 3487;
-            margin: 0 auto;
-            flex: 0 0 auto;
-        }
-
-        .hero-layer {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: fill;
-            object-position: center;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .hero-title-layer {
-            z-index: 1;
-        }
-
-        /*
-         * The title uses the full Photoshop canvas.
-         * The artifact pair is deliberately scaled as ONE stack so the
-         * medallion and its painted-on shine stay perfectly registered.
-         * The shine itself never receives the rotation transform.
-         */
-        .artifact-stack {
-            position: absolute;
-            left: 50%;
-            top: 56%;
-            width: 60%;
-            height: 60%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            overflow: visible;
-        }
-
-        .hero-medallion-layer,
-        .hero-shine-layer {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: fill;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .hero-medallion-layer {
-            z-index: 1;
-            transform-origin: 50% 56%;
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-
-        /* Fixed light painted ON the artifact. It stays completely still. */
-        .hero-shine-layer {
-            z-index: 2;
-        }
-
-        /* Transparent clickable zone over the actual medallion. */
-        .hero-artifact-hitbox {
-            position: absolute;
-            left: 50%;
-            top: 56%;
-            width: 46%;
-            aspect-ratio: 1;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            border: 0;
-            padding: 0;
             margin: 0;
-            background: transparent;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-
-        /* Hover/activated effects apply only to the moving artifact. */
-        .hero-artboard.hovered .hero-medallion-layer {
-            transform: scale(1.04);
-            filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
-        }
-
-        .hero-artboard.activated .hero-medallion-layer {
-            transform: rotate(20deg) scale(1.02);
-            filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
-        }
-
-        /* The instruction/popup zone sits below the fixed artboard. */
-        .medallion-box {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-width: 0;
-            min-height: 110px;
-            width: 100%;
-        }
-
-        .artifact-portal {
-            position: relative;
+            padding-left: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .email-reveal-zone {
-            position: absolute;
-            top: calc(100% + 48px);
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(100%, 320px);
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.5s ease;
-            display: flex;
-            justify-content: center;
-            z-index: 20;
-        }
-
-        .email-reveal-zone.show {
-            max-height: 80px;
-            opacity: 1;
-        }
-
-        .runic-input {
-            background-color: rgba(0, 0, 0, 0.85);
-            border: 2px solid #59e5d6;
-            border-radius: 4px;
-            padding: 10px 15px;
-            color: #ffffff;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-align: center;
-            width: 240px;
-            outline: none;
-            box-shadow: 0 0 10px rgba(89, 229, 214, 0.2);
-        }
-
-        .runic-input:focus {
-            box-shadow: 0 0 15px rgba(89, 229, 214, 0.6);
-            border-color: #ffffff;
-        }
-
-        .artifact-instruction-text {
-            font-size: 0.8rem;
-            color: #d29a39; 
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .info-panel li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d29a39;
+            letter-spacing: 0.5px;
+            font-weight: 500;
             text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-            text-align: center;
         }
 
-        /* Pure Black Video Panel layout tracking 5 grid columns natively */
+        .info-panel li strong {
+            color: #59e5d6;
+            text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
+        }
+
+        .info-panel p {
+            margin: 20px 0 0 0;
+            font-size: 1.1rem;
+            color: #d29a39;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* ================================================================
+           VIDEO PANEL
+           ================================================================ */
+
         .video-panel {
-            background-color: #000000;
-            border: 2px solid #59e5d6; 
-            box-shadow: 0 0 25px #59e5d6; 
+            background: #000000;
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 25px #59e5d6;
             border-radius: 4px;
             padding: 30px;
             display: grid;
@@ -465,10 +466,10 @@
         .video-card {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; 
+            padding-top: 177.77%;
             border-radius: 4px;
             overflow: hidden;
-            background-color: #111;
+            background: #111;
         }
 
         .video-card iframe {
@@ -480,36 +481,54 @@
             border: none;
         }
 
-        /* Smart-Stacking Rules For Mobile Phone Screens */
+        /* ================================================================
+           MOBILE
+           ================================================================ */
+
         @media (max-width: 768px) {
             .wrapper {
+                width: 94%;
                 margin: 15px auto;
                 gap: 20px;
             }
 
-            .header-panel {
-                display: flex;
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 30px 20px;
-                gap: 25px;
-                min-height: 0;
-            }
-            .header-left {
-                max-width: 100%;
-                align-items: center;
+            .hero-panel,
+            .hero-artboard {
+                min-height: 650px;
             }
 
-            .brand-headline {
-                max-width: 320px;
+            .hero-headline-layer {
+                top: 6%;
+                width: 82%;
+            }
+
+            .artifact-stack {
+                top: 48%;
+                width: 62%;
+            }
+
+            .hero-artifact-hitbox {
+                top: 48%;
+                width: 48%;
+            }
+
+            .artifact-instruction-text {
+                top: 82%;
+                font-size: 0.72rem;
+            }
+
+            .email-reveal-zone {
+                top: 87%;
+            }
+
+            .hero-navigation {
+                bottom: 3%;
             }
 
             .kindle-promo {
-                font-size: 1.1rem;
-                text-align: center;
+                font-size: 1.05rem;
             }
 
-            /* Stack tooltip cleanly underneath on narrow vertical viewports */
             .yersu-tooltip-text {
                 font-size: 1rem;
                 padding: 10px 20px;
@@ -527,24 +546,11 @@
                 font-size: 1rem;
             }
 
-            .hero-artboard {
-                width: min(100%, 520px);
-            }
-
-            .medallion-box {
-                min-height: 95px;
-            }
-
-            .email-reveal-zone {
-                width: min(100%, 290px);
-                top: calc(100% + 42px);
-            }
-
             .video-panel {
                 grid-template-columns: 1fr;
                 padding: 20px;
             }
-            
+
             .video-card {
                 max-width: 290px;
                 margin: 0 auto;
@@ -552,100 +558,246 @@
         }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
-        <!-- Header Row Section -->
-        <div class="header-panel">
-            <div class="header-left">
-                <!-- Main Comic Logo Layout Anchor -->
-                <div class="hero-artboard" aria-label="Waters Of Yersu title and artifact">
-                    <img src="headline-logo.png" alt="Waters Of Yersu" class="hero-layer hero-title-layer">
 
-                    <div class="artifact-stack" aria-label="Interactive Yersu artifact">
-                        <img src="runic-medallion.png" alt="" class="hero-medallion-layer">
-                        <img src="shine.png" alt="" class="hero-shine-layer" aria-hidden="true">
-                        <button type="button" id="artifactBtn" class="hero-artifact-hitbox" title="Click to activate artifact" aria-label="Activate artifact"></button>
-                    </div>
+        <!-- ============================================================
+             HERO
+             ============================================================ -->
+
+        <section class="hero-panel">
+            <div class="hero-artboard" id="heroArtboard">
+
+                <!-- Title + title glow -->
+                <img
+                    src="headline-logo.png"
+                    alt="Waters Of Yersu"
+                    class="hero-headline-layer"
+                >
+
+                <!-- ====================================================
+                     ARTIFACT STACK
+
+                     Same Photoshop coordinate system:
+                       1. moving artifact
+                       2. fixed painted-on shine
+                     ==================================================== -->
+                <div class="artifact-stack">
+
+                    <!-- Actual clickable visual artifact -->
+                    <img
+                        src="runic-medallion.png"
+                        alt=""
+                        aria-hidden="true"
+                        class="hero-medallion-layer"
+                    >
+
+                    <!-- Fixed shine painted ON the artifact -->
+                    <img
+                        src="shine.png"
+                        alt=""
+                        aria-hidden="true"
+                        class="hero-shine-layer"
+                    >
                 </div>
-                <p>Official Page (Under Construction)</p>
-                
-                <!-- Gold Kindle Notification Alert (Static Text Only) -->
-                <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
-                
-                <!-- Compact Checkout Navigation Badges -->
-                <div class="icon-bar">
-                    <!-- Amazon Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
+
+                <!-- Transparent click target -->
+                <button
+                    type="button"
+                    id="artifactBtn"
+                    class="hero-artifact-hitbox"
+                    aria-label="Activate artifact"
+                    title="Click to activate artifact"
+                ></button>
+
+                <!-- This does not move when the email box opens -->
+                <div class="artifact-instruction-text">
+                    Activate the artifact to reach Yersu
+                </div>
+
+                <!-- This is absolutely positioned, so it cannot push
+                     the medallion upward when revealed. -->
+                <div id="revealZone" class="email-reveal-zone">
+                    <form id="topEmailForm" action="#" method="POST">
+                        <input
+                            type="email"
+                            name="email"
+                            class="runic-input"
+                            placeholder="ENTER EMAIL TO COMPLETE..."
+                            required
+                        >
+                    </form>
+                </div>
+
+                <!-- Bottom navigation -->
+                <div class="hero-navigation">
+
+                    <p>Official Page (Under Construction)</p>
+
+                    <div class="kindle-promo">
+                        ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME
                     </div>
 
-                    <!-- Gumroad Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
-                    </div>
+                    <div class="icon-bar">
 
-                    <!-- GlobalComix Medallion Component -->
-                    <div class="custom-tooltip-wrapper">
-                        <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
-                        <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
+                        <div class="custom-tooltip-wrapper">
+                            <a
+                                href="#"
+                                id="topLinkAmazon"
+                                class="icon-link amazon-btn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            ></a>
+                            <span class="yersu-tooltip-text">
+                                BUY FROM AMAZON KINDLE
+                            </span>
+                        </div>
+
+                        <div class="custom-tooltip-wrapper">
+                            <a
+                                href="#"
+                                id="topLinkGumroad"
+                                class="icon-link gumroad-btn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            ></a>
+                            <span class="yersu-tooltip-text">
+                                READ ISSUE 1 &amp; 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!
+                            </span>
+                        </div>
+
+                        <div class="custom-tooltip-wrapper">
+                            <a
+                                href="#"
+                                id="topLinkGlobalComix"
+                                class="icon-link globalcomix-btn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            ></a>
+                            <span class="yersu-tooltip-text">
+                                READ ON GLOBAL COMIX HERE!
+                            </span>
+                        </div>
+
+                        <a
+                            href="#"
+                            id="topLinkDiscord"
+                            class="icon-link"
+                            title="Discord"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >D</a>
+
+                        <a
+                            href="#"
+                            id="topLinkContact"
+                            class="icon-link"
+                            title="Contact"
+                        >?</a>
+
                     </div>
-                    
-                    <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
-                    <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
             </div>
+        </section>
 
-            <!-- Custom Interactive Artifact Instructions + Popup -->
-            <div class="medallion-box">
-                <div class="artifact-portal">
-                    <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
+        <!-- ============================================================
+             READER INFORMATION
+             ============================================================ -->
 
-                    <div id="revealZone" class="email-reveal-zone">
-                        <form id="topEmailForm" action="#" method="POST">
-                            <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- New Reader Informational Box Panel -->
-        <div class="info-panel">
+        <section class="info-panel">
             <ul>
-                <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
-                <li>You can also read them for <strong>FREE</strong> on GlobalComix. Please note that GlobalComix requires a premium membership starting from Issue 2.</li>
-                <li>You can get paperback and digital versions of the comics on Amazon Kindle. If you would truly like to support this project, purchasing them from Amazon is the best way to do so!</li>
+                <li>
+                    You can read the comics for <strong>FREE</strong> on Gumroad.
+                    It requires an email address: simply enter your email,
+                    select "<strong>$0</strong>" at checkout, and continue.
+                </li>
+
+                <li>
+                    You can also read them for <strong>FREE</strong> on GlobalComix.
+                    Please note that GlobalComix requires a premium membership
+                    starting from Issue 2.
+                </li>
+
+                <li>
+                    You can get paperback and digital versions of the comics
+                    on Amazon Kindle. If you would truly like to support this
+                    project, purchasing them from Amazon is the best way to do so!
+                </li>
             </ul>
-            <p>The corresponding navigation icons are located above. I hope you enjoy the journey!</p>
-        </div>
 
-        <!-- 5-Column True Native Embed YouTube Player Grid -->
-        <div class="video-panel">
-            <div class="video-card">
-                <iframe id="vidEmbed1" src="" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-            </div>
-            <div class="video-card">
-                <iframe id="vidEmbed2" src="" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-            </div>
-            <div class="video-card">
-                <iframe id="vidEmbed3" src="" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-            </div>
-            <div class="video-card">
-                <iframe id="vidEmbed4" src="" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-            </div>
-            <div class="video-card">
-                <iframe id="vidEmbed5" src="" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-            </div>
-        </div>
+            <p>
+                The corresponding navigation icons are located above.
+                I hope you enjoy the journey!
+            </p>
+        </section>
 
+        <!-- ============================================================
+             VIDEO PANEL
+             ============================================================ -->
+
+        <section class="video-panel">
+
+            <div class="video-card">
+                <iframe
+                    id="vidEmbed1"
+                    src=""
+                    title="Yersu Teaser"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="video-card">
+                <iframe
+                    id="vidEmbed2"
+                    src=""
+                    title="Ong Teaser"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="video-card">
+                <iframe
+                    id="vidEmbed3"
+                    src=""
+                    title="Selen Teaser"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="video-card">
+                <iframe
+                    id="vidEmbed4"
+                    src=""
+                    title="Teaser 4"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="video-card">
+                <iframe
+                    id="vidEmbed5"
+                    src=""
+                    title="Teaser 5"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+        </section>
     </div>
 
-    <!-- Central URL Routing System -->
+    <!-- ================================================================
+         CENTRAL URL ROUTING SYSTEM
+         ================================================================ -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Securely grab elements or provide fallbacks to prevent fatal script halts
+
             const getUrl = (id) => {
                 const el = document.getElementById(id);
                 return el ? el.innerText.trim() : "";
@@ -657,85 +809,130 @@
             const discordUrl = getUrl("urlDiscord");
             const contactUrl = getUrl("urlContact");
             const formspreeUrl = getUrl("urlFormspree");
-            
+
             const v1 = getUrl("urlVid1");
             const v2 = getUrl("urlVid2");
             const v3 = getUrl("urlVid3");
             const v4 = getUrl("urlVid4");
             const v5 = getUrl("urlVid5");
 
-            // Safely inject them into your layout elements automatically
-            if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
-            if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
-            if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
-            if(document.getElementById("topLinkDiscord")) document.getElementById("topLinkDiscord").href = discordUrl;
-            if(document.getElementById("topLinkContact")) document.getElementById("topLinkContact").href = contactUrl;
-            if(document.getElementById("topEmailForm")) document.getElementById("topEmailForm").action = formspreeUrl;
+            const setHref = (id, url) => {
+                const el = document.getElementById(id);
+                if (el) el.href = url;
+            };
 
-            if(document.getElementById("vidEmbed1")) document.getElementById("vidEmbed1").src = v1;
-            if(document.getElementById("vidEmbed2")) document.getElementById("vidEmbed2").src = v2;
-            if(document.getElementById("vidEmbed3")) document.getElementById("vidEmbed3").src = v3;
-            if(document.getElementById("vidEmbed4")) document.getElementById("vidEmbed4").src = v4;
-            if(document.getElementById("vidEmbed5")) document.getElementById("vidEmbed5").src = v5;
+            setHref("topLinkAmazon", amazonUrl);
+            setHref("topLinkGumroad", gumroadUrl);
+            setHref("topLinkGlobalComix", globalComixUrl);
+            setHref("topLinkDiscord", discordUrl);
+            setHref("topLinkContact", contactUrl);
+
+            const form = document.getElementById("topEmailForm");
+            if (form) form.action = formspreeUrl;
+
+            const setVideo = (id, url) => {
+                const el = document.getElementById(id);
+                if (el) el.src = url;
+            };
+
+            setVideo("vidEmbed1", v1);
+            setVideo("vidEmbed2", v2);
+            setVideo("vidEmbed3", v3);
+            setVideo("vidEmbed4", v4);
+            setVideo("vidEmbed5", v5);
+
+            /* ============================================================
+               ARTIFACT INTERACTION
+
+               The hitbox is the only clickable object.
+               The visible medallion and shine are pointer-events:none.
+
+               Opening the email field does NOT alter the artifact's
+               position because the reveal zone is absolutely positioned.
+               ============================================================ */
+
+            const artifactBtn = document.getElementById("artifactBtn");
+            const revealZone = document.getElementById("revealZone");
+            const heroArtboard = document.getElementById("heroArtboard");
+
+            if (artifactBtn && revealZone && heroArtboard) {
+
+                artifactBtn.addEventListener("click", (event) => {
+                    event.stopPropagation();
+
+                    const active =
+                        heroArtboard.classList.toggle("artifact-active");
+
+                    revealZone.classList.toggle("show", active);
+
+                    if (active) {
+                        const input = revealZone.querySelector(".runic-input");
+                        if (input) {
+                            setTimeout(() => input.focus(), 350);
+                        }
+                    }
+                });
+
+                document.addEventListener("click", (event) => {
+                    if (!heroArtboard.contains(event.target)) {
+                        heroArtboard.classList.remove("artifact-active");
+                        revealZone.classList.remove("show");
+                    }
+                });
+            }
         });
-
-        // Medallion Animation Logic
-        const artifactBtn = document.getElementById('artifactBtn');
-        const revealZone = document.getElementById('revealZone');
-        const artifactPortal = document.querySelector('.artifact-portal');
-        const heroArtboard = document.querySelector('.hero-artboard');
-
-        if (artifactBtn && revealZone) {
-            artifactBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                const activated = artifactBtn.classList.toggle('activated');
-                if (heroArtboard) heroArtboard.classList.toggle('activated', activated);
-                revealZone.classList.toggle('show', activated);
-            });
-
-            artifactBtn.addEventListener('mouseenter', () => {
-                if (heroArtboard) heroArtboard.classList.add('hovered');
-            });
-
-            artifactBtn.addEventListener('mouseleave', () => {
-                if (heroArtboard) heroArtboard.classList.remove('hovered');
-            });
-
-            document.addEventListener('click', (e) => {
-                const clickedInsideArtifact = heroArtboard && heroArtboard.contains(e.target);
-                const clickedInsidePortal = artifactPortal && artifactPortal.contains(e.target);
-
-                if (!clickedInsideArtifact && !clickedInsidePortal) {
-                    artifactBtn.classList.remove('activated');
-                    if (heroArtboard) heroArtboard.classList.remove('activated', 'hovered');
-                    revealZone.classList.remove('show');
-                }
-            });
-        }
     </script>
 
-    <!--
-    =======================================================================
-                   CENTRAL MASTER URL DIRECTORY
-    =======================================================================
-    Highlight the plain text content inside the <span> nodes below and 
-    replace with your real deep links to fill the whole app ecosystem!
-    =======================================================================
-    -->
+    <!-- ================================================================
+         CENTRAL MASTER URL DIRECTORY
+         ================================================================ -->
+
     <div style="display: none !important;" aria-hidden="true">
-        <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
-        <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
-        <span id="urlGlobalComix">https://globalcomix.com/a/waters-of-yersu</span>
-        <span id="urlDiscord">https://discord.com</span>
-        <span id="urlContact">https://contact.me</span>
-        
-        <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
-        
-        <span id="urlVid1">https://www.youtube.com/embed/YaLCYzmp5LM</span>
-        <span id="urlVid2">https://www.youtube.com/embed/j2OkPtxXWt8</span>
-        <span id="urlVid3">https://www.youtube.com/embed/4c9W6motNRw</span>
-        <span id="urlVid4">https://www.youtube.com/embed/ps6LxT-VKOc</span>
-        <span id="urlVid5">https://www.youtube.com/embed/MyZd_Buecq8</span>
+
+        <span id="urlAmazon">
+            https://www.amazon.com/author/kultigin
+        </span>
+
+        <span id="urlGumroad">
+            https://watersofyersu.gumroad.com/
+        </span>
+
+        <span id="urlGlobalComix">
+            https://globalcomix.com/a/waters-of-yersu
+        </span>
+
+        <span id="urlDiscord">
+            https://discord.com
+        </span>
+
+        <span id="urlContact">
+            https://contact.me
+        </span>
+
+        <span id="urlFormspree">
+            https://formspree.io/f/moeajlke
+        </span>
+
+        <span id="urlVid1">
+            https://www.youtube.com/embed/YaLCYzmp5LM
+        </span>
+
+        <span id="urlVid2">
+            https://www.youtube.com/embed/j2OkPtxXWt8
+        </span>
+
+        <span id="urlVid3">
+            https://www.youtube.com/embed/4c9W6motNRw
+        </span>
+
+        <span id="urlVid4">
+            https://www.youtube.com/embed/ps6LxT-VKOc
+        </span>
+
+        <span id="urlVid5">
+            https://www.youtube.com/embed/MyZd_Buecq8
+        </span>
+
     </div>
 </body>
 </html>
