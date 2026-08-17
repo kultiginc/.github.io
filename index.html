@@ -297,6 +297,7 @@
             margin: 0 auto;
             flex: 0 0 auto;
             isolation: isolate;
+            overflow: visible;
         }
 
         .hero-layer {
@@ -394,22 +395,21 @@
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
         }
 
-        /* The instruction/popup zone sits below the fixed artboard. */
-        .medallion-box {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-width: 0;
-            min-height: 110px;
-            width: 100%;
-        }
-
+        /* Instruction + email popup are anchored inside the artboard, directly
+         * beneath the artifact. They are absolutely positioned so opening the
+         * email field never moves the medallion, title, or navigation. */
         .artifact-portal {
-            position: relative;
+            position: absolute;
+            left: 50%;
+            top: 74%;
+            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
+            width: max-content;
+            max-width: 100%;
+            z-index: 30;
         }
 
         .email-reveal-zone {
@@ -546,8 +546,13 @@
                 width: min(100%, 520px);
             }
 
-            .medallion-box {
-                min-height: 95px;
+            .artifact-portal {
+                top: 74%;
+                width: 100%;
+            }
+
+            .artifact-instruction-text {
+                white-space: nowrap;
             }
 
             .email-reveal-zone {
@@ -587,6 +592,18 @@
                                 title="Click to activate artifact"
                                 aria-label="Activate artifact"></button>
                     </div>
+
+                    <!-- Instruction + email popup stay physically under the artifact.
+                         Absolute positioning keeps them out of the normal flex flow. -->
+                    <div class="artifact-portal">
+                        <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
+
+                        <div id="revealZone" class="email-reveal-zone">
+                            <form id="topEmailForm" action="#" method="POST">
+                                <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <p>Official Page (Under Construction)</p>
                 
@@ -616,20 +633,6 @@
                     <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
                     <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
-            </div>
-
-            <!-- Custom Interactive Artifact Instructions + Popup -->
-            <div class="medallion-box">
-                <div class="artifact-portal">
-                    <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
-
-                    <div id="revealZone" class="email-reveal-zone">
-                        <form id="topEmailForm" action="#" method="POST">
-                            <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- New Reader Informational Box Panel -->
