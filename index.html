@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="runic-medallion.png">
-    <!-- Required transparent overlay asset: shine.png -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waters of Yersu - Official Page</title>
@@ -353,13 +352,32 @@
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /* Fixed light painted ON the artifact. It stays completely still. */
-        .hero-shine-layer {
+        /*
+         * Fixed CSS light painted over the artifact.
+         * It is a sibling of the rotating medallion, so it never rotates.
+         * It stays above the medallion and below the transparent hitbox.
+         */
+        .artifact-shine {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 76%;
+            height: 76%;
+            transform: translate(-50%, -50%);
             z-index: 5 !important;
             pointer-events: none;
-            transform: translateY(20px) scale(2);
+            border-radius: 50%;
+            background:
+                radial-gradient(
+                    ellipse at 50% 34%,
+                    rgba(255, 255, 255, 0.42) 0%,
+                    rgba(89, 229, 214, 0.34) 18%,
+                    rgba(89, 229, 214, 0.18) 38%,
+                    rgba(89, 229, 214, 0.07) 56%,
+                    rgba(89, 229, 214, 0.0) 72%
+                );
+            filter: blur(3px);
             mix-blend-mode: screen;
-            transform-origin: 50% 50%;
         }
 
         /* Transparent clickable zone over the actual medallion. */
@@ -381,12 +399,12 @@
         }
 
         /*
-         * The shine is a fixed painted highlight, so it NEVER receives
+         * The shine is a fixed highlight, so it NEVER receives
          * hover scaling or rotation.
          *
          * The moving artifact receives only the visual effects that belong
          * to the artifact itself. Removing hover/activation scaling keeps
-         * shine.png registered with the Photoshop artwork.
+         * with the fixed CSS shine.
          */
         .hero-artboard.hovered .hero-medallion-layer {
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
@@ -587,7 +605,9 @@
                     <!-- Full-canvas Photoshop exports: artifact + fixed painted shine -->
                     <div class="artifact-stack" aria-label="Interactive Yersu artifact">
                         <img src="runic-medallion.png" alt="" class="hero-medallion-layer">
-                        <img src="shine.png" alt="" class="hero-shine-layer" aria-hidden="true">
+
+                        <!-- Fixed CSS shine: independent of medallion rotation -->
+                        <div class="artifact-shine" aria-hidden="true"></div>
 
                         <!-- Transparent clickable zone, independent of the image layers -->
                         <button type="button" id="artifactBtn" class="hero-artifact-hitbox"
