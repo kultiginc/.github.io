@@ -348,7 +348,7 @@
 
         .hero-medallion-layer {
             z-index: 1;
-            transform-origin: 50% 56%;
+            transform-origin: 50% 50%;
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
@@ -356,8 +356,8 @@
         .hero-shine-layer {
             z-index: 2;
             pointer-events: none;
-            transform: scale(2);
-            transform-origin: 50% 56%;
+            transform: translateY(14px) scale(2);
+            transform-origin: 50% 50%;
         }
 
         /* Transparent clickable zone over the actual medallion. */
@@ -401,7 +401,7 @@
         .artifact-portal {
             position: absolute;
             left: 50%;
-            top: 74%;
+            top: 81.5%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
@@ -547,7 +547,7 @@
             }
 
             .artifact-portal {
-                top: 74%;
+                top: 81.5%;
                 width: 100%;
             }
 
