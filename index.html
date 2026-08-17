@@ -331,6 +331,7 @@
             transform: translate(-50%, -50%);
             z-index: 2;
             overflow: visible;
+            isolation: isolate;
             aspect-ratio: 3675 / 3487;
         }
 
@@ -347,16 +348,17 @@
         }
 
         .hero-medallion-layer {
-            z-index: 1;
+            z-index: 1 !important;
             transform-origin: 50% 50%;
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
         /* Fixed light painted ON the artifact. It stays completely still. */
         .hero-shine-layer {
-            z-index: 2;
+            z-index: 5 !important;
             pointer-events: none;
-            transform: translateY(10px) scale(2);
+            transform: translateY(7px) scale(2);
+            mix-blend-mode: screen;
             transform-origin: 50% 50%;
         }
 
@@ -368,7 +370,7 @@
             width: 46%;
             aspect-ratio: 1;
             transform: translate(-50%, -50%);
-            z-index: 10;
+            z-index: 10 !important;
             border: 0;
             padding: 0;
             margin: 0;
@@ -467,36 +469,33 @@
 
         /* Pure Black Video Panel layout tracking 5 grid columns natively */
         .video-panel {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #000000;
-    border: 2px solid #59e5d6;
-    box-shadow: 0 0 25px #59e5d6;
-    border-radius: 4px;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 15px;
-}
+            background-color: #000000;
+            border: 2px solid #59e5d6; 
+            box-shadow: 0 0 25px #59e5d6; 
+            border-radius: 4px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
 
-.video-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    min-width: 0;
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: #111;
-}
+        .video-card {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; 
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #111;
+        }
 
-.video-card iframe {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+        .video-card iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         /* Smart-Stacking Rules For Mobile Phone Screens */
         @media (max-width: 768px) {
