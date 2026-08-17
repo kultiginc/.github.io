@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="runic-medallion.png">
+    <!-- Required transparent overlay asset: shine.png -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waters of Yersu - Official Page</title>
@@ -35,38 +36,41 @@
             box-sizing: border-box;
         }
 
-        /* Compact Header with Uniform 360° Outer Yersu Teal Glow and 80% Opacity */
+        /* Centered desktop header composition */
         .header-panel {
             background-color: rgba(0, 0, 0, 0.8);
-            border: 2px solid #59e5d6; 
-            box-shadow: 0 0 25px #59e5d6; 
+            border: 2px solid #59e5d6;
+            box-shadow: 0 0 25px #59e5d6;
             border-radius: 4px;
-            padding: 25px 40px; 
+            padding: 30px 40px 45px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
-            min-height: 220px;
+            gap: 12px;
+            min-height: 620px;
             box-sizing: border-box;
+            position: relative;
         }
 
-        /* Expanded Left Container to give your Title Image full clearance */
+        /* Centered title/text/navigation column */
         .header-left {
+            width: min(100%, 760px);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             gap: 12px;
-            flex-grow: 1;
-            max-width: 65%;
+            text-align: center;
         }
 
         /* Uniform Wide Title Scaling */
         .brand-headline {
-            width: 100%;
-            max-width: 600px;
+            width: min(100%, 720px);
+            max-width: 720px;
             height: auto;
             display: block;
             object-fit: contain;
+            margin: 0 auto;
         }
 
         /* Small text placement formatting */
@@ -82,7 +86,7 @@
         .kindle-promo-link {
             text-decoration: none;
             display: inline-block;
-            align-self: flex-start;
+            align-self: center;
         }
 
         .kindle-promo {
@@ -279,65 +283,107 @@
     letter-spacing: 1px;
 }
 
-        /* --- ARTIFACT PORTAL INTERFACE SYSTEM --- */
+        /* --- ARTIFACT / FULL-CANVAS PNG ALIGNMENT SYSTEM --- */
+        /*
+         * All three exported PNGs come from the same Photoshop canvas:
+         * 3675 x 3487 px at 600 DPI.
+         * Keeping them as identical full-canvas layers preserves their
+         * Photoshop coordinates on the website.
+         */
+        .hero-artboard {
+            position: relative;
+            width: min(100%, 720px);
+            aspect-ratio: 3675 / 3487;
+            margin: 0 auto;
+            flex: 0 0 auto;
+        }
+
+        .hero-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: fill;
+            object-position: center;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-title-layer {
+            z-index: 1;
+        }
+
+        .hero-medallion-layer {
+            z-index: 2;
+            transform-origin: 50% 56%;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .hero-shine-layer {
+            z-index: 3;
+        }
+
+        /* Transparent clickable zone over the medallion. */
+        .hero-artifact-hitbox {
+            position: absolute;
+            left: 50%;
+            top: 56%;
+            width: 38%;
+            aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* Hover/activated effects apply to the artifact layer, not the fixed shine. */
+        .hero-artboard.hovered .hero-medallion-layer {
+            transform: scale(1.04);
+            filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
+        }
+
+        .hero-artboard.activated .hero-medallion-layer {
+            transform: rotate(20deg) scale(1.02);
+            filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
+        }
+
+        /* The instruction/popup zone sits below the fixed artboard. */
         .medallion-box {
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            min-height: 240px;
+            align-items: flex-start;
+            min-width: 0;
+            min-height: 110px;
+            width: 100%;
         }
 
         .artifact-portal {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
         }
 
-        .medallion-container {
-            position: relative;
-            width: clamp(220px, 28vw, 320px);
-            height: clamp(220px, 28vw, 320px);
-        }
-
-        .medallion-trigger-btn {
-            width: 100%;
-            height: 100%;
-            background-image: url('runic-medallion.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none !important;
-            padding: 0 !important;
-            cursor: pointer;
-            background-color: transparent;
-            -webkit-mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            mask-image: radial-gradient(circle, black 70%, transparent 71%);
-            -webkit-tap-highlight-color: transparent;
-            outline: none !important;
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-
-        .medallion-trigger-btn:hover {
-            transform: scale(1.04);
-            filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
-        }
-
-        .medallion-trigger-btn.activated {
-            transform: rotate(20deg) scale(1.02);
-            filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
-        }
-
-        /* Dynamic Hidden Input Area Container */
         .email-reveal-zone {
+            position: absolute;
+            top: calc(100% + 48px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(100%, 320px);
             max-height: 0;
             opacity: 0;
             overflow: hidden;
             transition: max-height 0.5s ease, opacity 0.5s ease;
-            width: 100%;
             display: flex;
             justify-content: center;
+            z-index: 20;
         }
 
         .email-reveal-zone.show {
@@ -412,10 +458,12 @@
             }
 
             .header-panel {
+                display: flex;
                 flex-direction: column-reverse;
                 text-align: center;
                 padding: 30px 20px;
                 gap: 25px;
+                min-height: 0;
             }
             .header-left {
                 max-width: 100%;
@@ -449,8 +497,17 @@
                 font-size: 1rem;
             }
 
+            .hero-artboard {
+                width: min(100%, 520px);
+            }
+
             .medallion-box {
-                min-height: auto;
+                min-height: 95px;
+            }
+
+            .email-reveal-zone {
+                width: min(100%, 290px);
+                top: calc(100% + 42px);
             }
 
             .video-panel {
@@ -471,7 +528,12 @@
         <div class="header-panel">
             <div class="header-left">
                 <!-- Main Comic Logo Layout Anchor -->
-                <img src="headline-logo.png" alt="Waters Of Yersu" class="brand-headline">
+                <div class="hero-artboard" aria-label="Waters Of Yersu title and artifact">
+                    <img src="headline-logo.png" alt="Waters Of Yersu" class="hero-layer hero-title-layer">
+                    <img src="runic-medallion.png" alt="" class="hero-layer hero-medallion-layer">
+                    <img src="shine.png" alt="" class="hero-layer hero-shine-layer" aria-hidden="true">
+                    <button type="button" id="artifactBtn" class="hero-artifact-hitbox" title="Click to activate artifact" aria-label="Activate artifact"></button>
+                </div>
                 <p>Official Page (Under Construction)</p>
                 
                 <!-- Gold Kindle Notification Alert (Static Text Only) -->
@@ -502,15 +564,11 @@
                 </div>
             </div>
 
-            <!-- Custom Interactive Artifact Box Anchor Point -->
+            <!-- Custom Interactive Artifact Instructions + Popup -->
             <div class="medallion-box">
                 <div class="artifact-portal">
-                    <div class="medallion-container">
-                        <button type="button" id="artifactBtn" class="medallion-trigger-btn" title="Click to activate artifact"></button>
-                    </div>
-                    
                     <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
-                    
+
                     <div id="revealZone" class="email-reveal-zone">
                         <form id="topEmailForm" action="#" method="POST">
                             <input type="email" name="email" class="runic-input" placeholder="ENTER EMAIL TO COMPLETE..." required>
@@ -592,17 +650,28 @@
         const artifactBtn = document.getElementById('artifactBtn');
         const revealZone = document.getElementById('revealZone');
         const artifactPortal = document.querySelector('.artifact-portal');
+        const heroArtboard = document.querySelector('.hero-artboard');
 
         if (artifactBtn && revealZone) {
             artifactBtn.addEventListener('click', (e) => {
                 e.stopPropagation(); 
-                artifactBtn.classList.toggle('activated');
-                revealZone.classList.toggle('show');
+                const activated = artifactBtn.classList.toggle('activated');
+                if (heroArtboard) heroArtboard.classList.toggle('activated', activated);
+                revealZone.classList.toggle('show', activated);
+            });
+
+            artifactBtn.addEventListener('mouseenter', () => {
+                if (heroArtboard) heroArtboard.classList.add('hovered');
+            });
+
+            artifactBtn.addEventListener('mouseleave', () => {
+                if (heroArtboard) heroArtboard.classList.remove('hovered');
             });
 
             document.addEventListener('click', (e) => {
                 if (artifactPortal && !artifactPortal.contains(e.target)) {
                     artifactBtn.classList.remove('activated');
+                    if (heroArtboard) heroArtboard.classList.remove('activated', 'hovered');
                     revealZone.classList.remove('show');
                 }
             });
