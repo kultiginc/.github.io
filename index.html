@@ -314,25 +314,55 @@
             z-index: 1;
         }
 
-        .hero-medallion-layer {
+        /*
+         * The title uses the full Photoshop canvas.
+         * The artifact pair is deliberately scaled as ONE stack so the
+         * medallion and its painted-on shine stay perfectly registered.
+         * The shine itself never receives the rotation transform.
+         */
+        .artifact-stack {
+            position: absolute;
+            left: 50%;
+            top: 56%;
+            width: 60%;
+            height: 60%;
+            transform: translate(-50%, -50%);
             z-index: 2;
+            overflow: visible;
+        }
+
+        .hero-medallion-layer,
+        .hero-shine-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: fill;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-medallion-layer {
+            z-index: 1;
             transform-origin: 50% 56%;
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
+        /* Fixed light painted ON the artifact. It stays completely still. */
         .hero-shine-layer {
-            z-index: 3;
+            z-index: 2;
         }
 
-        /* Transparent clickable zone over the medallion. */
+        /* Transparent clickable zone over the actual medallion. */
         .hero-artifact-hitbox {
             position: absolute;
             left: 50%;
             top: 56%;
-            width: 38%;
+            width: 46%;
             aspect-ratio: 1;
             transform: translate(-50%, -50%);
-            z-index: 4;
+            z-index: 3;
             border: 0;
             padding: 0;
             margin: 0;
@@ -342,7 +372,7 @@
             outline: none;
         }
 
-        /* Hover/activated effects apply to the artifact layer, not the fixed shine. */
+        /* Hover/activated effects apply only to the moving artifact. */
         .hero-artboard.hovered .hero-medallion-layer {
             transform: scale(1.04);
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
@@ -530,9 +560,12 @@
                 <!-- Main Comic Logo Layout Anchor -->
                 <div class="hero-artboard" aria-label="Waters Of Yersu title and artifact">
                     <img src="headline-logo.png" alt="Waters Of Yersu" class="hero-layer hero-title-layer">
-                    <img src="runic-medallion.png" alt="" class="hero-layer hero-medallion-layer">
-                    <img src="shine.png" alt="" class="hero-layer hero-shine-layer" aria-hidden="true">
-                    <button type="button" id="artifactBtn" class="hero-artifact-hitbox" title="Click to activate artifact" aria-label="Activate artifact"></button>
+
+                    <div class="artifact-stack" aria-label="Interactive Yersu artifact">
+                        <img src="runic-medallion.png" alt="" class="hero-medallion-layer">
+                        <img src="shine.png" alt="" class="hero-shine-layer" aria-hidden="true">
+                        <button type="button" id="artifactBtn" class="hero-artifact-hitbox" title="Click to activate artifact" aria-label="Activate artifact"></button>
+                    </div>
                 </div>
                 <p>Official Page (Under Construction)</p>
                 
@@ -669,7 +702,10 @@
             });
 
             document.addEventListener('click', (e) => {
-                if (artifactPortal && !artifactPortal.contains(e.target)) {
+                const clickedInsideArtifact = heroArtboard && heroArtboard.contains(e.target);
+                const clickedInsidePortal = artifactPortal && artifactPortal.contains(e.target);
+
+                if (!clickedInsideArtifact && !clickedInsidePortal) {
                     artifactBtn.classList.remove('activated');
                     if (heroArtboard) heroArtboard.classList.remove('activated', 'hovered');
                     revealZone.classList.remove('show');
