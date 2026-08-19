@@ -203,6 +203,28 @@
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
+
+        /* Custom Medallion App Icon Configuration for Google Play Books */
+        .icon-link.google-play-btn {
+            background-image: url('google-play.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover state: Gold glow anchor (Matching Store Buttons) */
+        .icon-link.google-play-btn:hover {
+            box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        /* Click state: Pure high-intensity Yersu teal flash (Matching Store Buttons) */
+        .icon-link.google-play-btn:active {
+            box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
+            transform: scale(0.98);
+        }
         
         /* --- THE GIANT YERSU CIRCULAR TOOLTIP ENGINE --- */
         .custom-tooltip-wrapper {
@@ -485,7 +507,7 @@
 
             .header-panel {
                 display: flex;
-                flex-direction: column; /* FIXED: Changed column-reverse to normal column stack */
+                flex-direction: column;
                 text-align: center;
                 padding: 30px 20px;
                 gap: 25px;
@@ -599,7 +621,11 @@
                         <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
                     </div>
                     
-                    <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
+                    <div class="custom-tooltip-wrapper">
+                        <a href="#" id="topLinkGooglePlay" class="icon-link google-play-btn" target="_blank"></a>
+                        <span class="yersu-tooltip-text">Buy From Google Play Books</span>
+                    </div>
+                    
                     <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
             </div>
@@ -643,7 +669,7 @@
             const amazonUrl = getUrl("urlAmazon");
             const gumroadUrl = getUrl("urlGumroad");
             const globalComixUrl = getUrl("urlGlobalComix");
-            const discordUrl = getUrl("urlDiscord");
+            const googlePlayUrl = getUrl("urlGooglePlay");
             const contactUrl = getUrl("urlContact");
             const formspreeUrl = getUrl("urlFormspree");
             
@@ -656,7 +682,7 @@
             if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
             if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
             if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
-            if(document.getElementById("topLinkDiscord")) document.getElementById("topLinkDiscord").href = discordUrl;
+            if(document.getElementById("topLinkGooglePlay")) document.getElementById("topLinkGooglePlay").href = googlePlayUrl;
             if(document.getElementById("topLinkContact")) document.getElementById("topLinkContact").href = contactUrl;
             if(document.getElementById("topEmailForm")) document.getElementById("topEmailForm").action = formspreeUrl;
 
@@ -706,7 +732,7 @@
         <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
         <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
         <span id="urlGlobalComix">https://globalcomix.com/a/waters-of-yersu</span>
-        <span id="urlDiscord">https://discord.com</span>
+        <span id="urlGooglePlay">https://play.google.com/store/books/series?id=eTW3HAAAABDPKM</span>
         <span id="urlContact">https://contact.me</span>
         
         <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
