@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="runic-medallion.png">
-    <!-- Transparent PNG assets: headline-logo.png and runic-medallion.png -->
+    <!-- Required transparent overlay asset: shine.png -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waters of Yersu - Official Page</title>
@@ -203,6 +203,7 @@
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
+
         /* Custom Medallion App Icon Configuration for Google Play Books */
         .icon-link.google-play-btn {
             background-image: url('google-play.png');
@@ -213,16 +214,18 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        /* Hover state: Gold glow anchor (Matching Store Buttons) */
         .icon-link.google-play-btn:hover {
             box-shadow: 0 0 12px rgba(210, 154, 57, 0.95);
             transform: scale(1.05) translateY(-2px);
         }
 
+        /* Click state: Pure high-intensity Yersu teal flash (Matching Store Buttons) */
         .icon-link.google-play-btn:active {
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
-
+        
         /* --- THE GIANT YERSU CIRCULAR TOOLTIP ENGINE --- */
         .custom-tooltip-wrapper {
             position: relative;
@@ -274,42 +277,36 @@
         }
 
         .info-panel ul {
-    margin: 0;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+            margin: 0;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.info-panel li {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d29a39;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-}
+        .info-panel li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d29a39;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+        }
 
-.info-panel li strong {
-    color: #59e5d6;
-    text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
-}
+        .info-panel li strong {
+            color: #59e5d6;
+            text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
+        }
 
-.info-panel p {
-    margin: 20px 0 0 0;
-    font-size: 1.1rem;
-    color: #d29a39;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        .info-panel p {
+            margin: 20px 0 0 0;
+            font-size: 1.1rem;
+            color: #d29a39;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
         /* --- ARTIFACT / FULL-CANVAS PNG ALIGNMENT SYSTEM --- */
-        /*
-         * All three exported PNGs come from the same Photoshop canvas:
-         * 3675 x 3487 px at 600 DPI.
-         * Keeping them as identical full-canvas layers preserves their
-         * Photoshop coordinates on the website.
-         */
         .hero-artboard {
             position: relative;
             width: min(100%, 720px);
@@ -336,12 +333,6 @@
             z-index: 1;
         }
 
-        /*
-         * The title uses the full Photoshop canvas.
-         * The artifact pair is deliberately scaled as ONE stack so the
-         * medallion and its painted-on shine stay perfectly registered.
-         * The shine itself never receives the rotation transform.
-         */
         .artifact-stack {
             position: absolute;
             left: 50%;
@@ -351,11 +342,11 @@
             transform: translate(-50%, -50%);
             z-index: 2;
             overflow: visible;
-            isolation: isolate;
             aspect-ratio: 3675 / 3487;
         }
 
-        .hero-medallion-layer {
+        .hero-medallion-layer,
+        .hero-shine-layer {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -364,61 +355,20 @@
             object-fit: fill;
             pointer-events: none;
             user-select: none;
-            z-index: 1 !important;
+        }
+
+        .hero-medallion-layer {
+            z-index: 1;
             transform-origin: 50% 50%;
             transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        /*
-         * STATIONARY INNER TEAL HIGHLIGHT
-         * The shine uses the medallion PNG as its own alpha mask.
-         * Therefore the light exists only inside the artifact silhouette,
-         * while remaining independent from the medallion rotation.
-         */
-        .artifact-stack::before {
-    content: "";
-    position: absolute;
-    left: 12%;
-    top: 4%;
-    width: 76%;
-    height: 32%;
-    border-top: 7px solid rgba(89, 229, 214, 0.95);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    filter: blur(1.5px);
-    box-shadow:
-        0 0 5px rgba(89, 229, 214, 0.95),
-        0 0 12px rgba(89, 229, 214, 0.65),
-        0 0 22px rgba(89, 229, 214, 0.35);
-    pointer-events: none;
-    z-index: 2;
-}
-
-        .artifact-stack::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 6 !important;
+        /* Fixed light painted ON the artifact. It stays completely still. */
+        .hero-shine-layer {
+            z-index: 2;
             pointer-events: none;
-            background:
-                radial-gradient(
-                    ellipse 72% 44% at 50% 102%,
-                    rgba(89, 229, 214, 0.00) 0%,
-                    rgba(89, 229, 214, 0.10) 38%,
-                    rgba(89, 229, 214, 0.30) 50%,
-                    rgba(89, 229, 214, 0.58) 60%,
-                    rgba(89, 229, 214, 0.18) 70%,
-                    rgba(89, 229, 214, 0.00) 78%
-                );
-            -webkit-mask-image: url('runic-medallion.png');
-            mask-image: url('runic-medallion.png');
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-            -webkit-mask-position: center;
-            mask-position: center;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            filter: blur(2.5px);
-            mix-blend-mode: screen;
+            transform: translateY(7px) scale(2);
+            transform-origin: 50% 50%;
         }
 
         /* Transparent clickable zone over the actual medallion. */
@@ -429,7 +379,7 @@
             width: 46%;
             aspect-ratio: 1;
             transform: translate(-50%, -50%);
-            z-index: 10 !important;
+            z-index: 10;
             border: 0;
             padding: 0;
             margin: 0;
@@ -439,14 +389,6 @@
             outline: none;
         }
 
-        /*
-         * The shine is a fixed painted highlight, so it NEVER receives
-         * hover scaling or rotation.
-         *
-         * The moving artifact receives only the visual effects that belong
-         * to the artifact itself. Removing hover/activation scaling keeps
-         * the CSS highlight remains fixed while the artifact rotates.
-         */
         .hero-artboard.hovered .hero-medallion-layer {
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
         }
@@ -456,9 +398,6 @@
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
         }
 
-        /* Instruction + email popup are anchored inside the artboard, directly
-         * beneath the artifact. They are absolutely positioned so opening the
-         * email field never moves the medallion, title, or navigation. */
         .artifact-portal {
             position: absolute;
             left: 50%;
@@ -531,8 +470,8 @@
             width: 100%;
             box-sizing: border-box;
             background-color: #000000;
-            border: 2px solid #59e5d6;
-            box-shadow: 0 0 25px #59e5d6;
+            border: 2px solid #59e5d6; 
+            box-shadow: 0 0 25px #59e5d6; 
             border-radius: 4px;
             padding: 30px;
             display: grid;
@@ -574,6 +513,7 @@
                 gap: 25px;
                 min-height: 0;
             }
+            
             .header-left {
                 max-width: 100%;
                 align-items: center;
@@ -628,7 +568,7 @@
                 grid-template-columns: 1fr;
                 padding: 20px;
             }
-
+            
             .video-card {
                 max-width: none;
                 margin: 0;
@@ -638,26 +578,19 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Header Row Section -->
         <div class="header-panel">
             <div class="header-left">
-                <!-- Main Comic Logo Layout Anchor -->
                 <div class="hero-artboard" aria-label="Waters Of Yersu title and artifact">
-                    <!-- Full-canvas Photoshop export: title + title glow -->
                     <img src="headline-logo.png" alt="Waters Of Yersu" class="hero-layer hero-title-layer">
 
-                    <!-- Full-canvas Photoshop exports: artifact + fixed painted shine -->
                     <div class="artifact-stack" aria-label="Interactive Yersu artifact">
                         <img src="runic-medallion.png" alt="" class="hero-medallion-layer">
-
-                        <!-- Transparent clickable zone, independent of the image layers -->
+                        
                         <button type="button" id="artifactBtn" class="hero-artifact-hitbox"
                                 title="Click to activate artifact"
                                 aria-label="Activate artifact"></button>
                     </div>
 
-                    <!-- Instruction + email popup stay physically under the artifact.
-                         Absolute positioning keeps them out of the normal flex flow. -->
                     <div class="artifact-portal">
                         <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
 
@@ -670,39 +603,34 @@
                 </div>
                 <p>Official Page (Under Construction)</p>
                 
-                <!-- Gold Kindle Notification Alert (Static Text Only) -->
                 <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
                 
-                <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
-                    <!-- Amazon Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
                     </div>
 
-                    <!-- Gumroad Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
                     </div>
 
-                    <!-- GlobalComix Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
                     </div>
+                    
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkGooglePlay" class="icon-link google-play-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">Buy From Google Play Books</span>
                     </div>
                     
-                    <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
                     <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
+            </div>
         </div>
 
-        <!-- New Reader Informational Box Panel -->
         <div class="info-panel">
             <ul>
                 <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
@@ -712,32 +640,27 @@
             <p>The corresponding navigation icons are located above. I hope you enjoy the journey!</p>
         </div>
 
-        <!-- 5-Column True Native Embed YouTube Player Grid -->
-        <!-- Video URLs are assigned directly in the iframe src attributes so the embeds do not depend on the URL-routing script. -->
         <div class="video-panel">
             <div class="video-card">
-                <iframe id="vidEmbed1" src="https://www.youtube.com/embed/YaLCYzmp5LM" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed1" src="https://www.youtube.com/embed/YaLCYzmp5LM" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe id="vidEmbed2" src="https://www.youtube.com/embed/j2OkPtxXWt8" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed2" src="https://www.youtube.com/embed/j2OkPtxXWt8" title="Ong Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe id="vidEmbed3" src="https://www.youtube.com/embed/4c9W6motNRw" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed3" src="https://www.youtube.com/embed/4c9W6motNRw" title="Selen Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe id="vidEmbed4" src="https://www.youtube.com/embed/ps6LxT-VKOc" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed4" src="https://www.youtube.com/embed/ps6LxT-VKOc" title="Teaser 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
             <div class="video-card">
-                <iframe id="vidEmbed5" src="https://www.youtube.com/embed/MyZd_Buecq8" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+                <iframe id="vidEmbed5" src="https://www.youtube.com/embed/MyZd_Buecq8" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
         </div>
-
     </div>
 
-    <!-- Central URL Routing System -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Securely grab elements or provide fallbacks to prevent fatal script halts
             const getUrl = (id) => {
                 const el = document.getElementById(id);
                 return el ? el.innerText.trim() : "";
@@ -747,7 +670,6 @@
             const gumroadUrl = getUrl("urlGumroad");
             const globalComixUrl = getUrl("urlGlobalComix");
             const googlePlayUrl = getUrl("urlGooglePlay");
-            const discordUrl = getUrl("urlDiscord");
             const contactUrl = getUrl("urlContact");
             const formspreeUrl = getUrl("urlFormspree");
             
@@ -757,12 +679,10 @@
             const v4 = getUrl("urlVid4");
             const v5 = getUrl("urlVid5");
 
-            // Safely inject them into your layout elements automatically
             if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
             if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
             if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
             if(document.getElementById("topLinkGooglePlay")) document.getElementById("topLinkGooglePlay").href = googlePlayUrl;
-            if(document.getElementById("topLinkDiscord")) document.getElementById("topLinkDiscord").href = discordUrl;
             if(document.getElementById("topLinkContact")) document.getElementById("topLinkContact").href = contactUrl;
             if(document.getElementById("topEmailForm")) document.getElementById("topEmailForm").action = formspreeUrl;
 
@@ -808,20 +728,11 @@
         }
     </script>
 
-    <!--
-    =======================================================================
-                   CENTRAL MASTER URL DIRECTORY
-    =======================================================================
-    Highlight the plain text content inside the <span> nodes below and 
-    replace with your real deep links to fill the whole app ecosystem!
-    =======================================================================
-    -->
     <div style="display: none !important;" aria-hidden="true">
         <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
         <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
         <span id="urlGlobalComix">https://globalcomix.com/a/waters-of-yersu</span>
         <span id="urlGooglePlay">https://play.google.com/store/books/series?id=eTW3HAAAABDPKM</span>
-        <span id="urlDiscord">https://discord.com</span>
         <span id="urlContact">https://contact.me</span>
         
         <span id="urlFormspree">https://formspree.io/f/moeajlke</span>
