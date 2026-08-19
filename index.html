@@ -203,6 +203,7 @@
             box-shadow: 0 0 16px rgba(89, 229, 214, 0.98);
             transform: scale(0.98);
         }
+        
         /* --- THE GIANT YERSU CIRCULAR TOOLTIP ENGINE --- */
         .custom-tooltip-wrapper {
             position: relative;
@@ -254,42 +255,36 @@
         }
 
         .info-panel ul {
-    margin: 0;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+            margin: 0;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.info-panel li {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d29a39;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
-}
+        .info-panel li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d29a39;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(210, 154, 57, 0.2);
+        }
 
-.info-panel li strong {
-    color: #59e5d6;
-    text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
-}
+        .info-panel li strong {
+            color: #59e5d6;
+            text-shadow: 0 0 8px rgba(89, 229, 214, 0.4);
+        }
 
-.info-panel p {
-    margin: 20px 0 0 0;
-    font-size: 1.1rem;
-    color: #d29a39;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        .info-panel p {
+            margin: 20px 0 0 0;
+            font-size: 1.1rem;
+            color: #d29a39;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
         /* --- ARTIFACT / FULL-CANVAS PNG ALIGNMENT SYSTEM --- */
-        /*
-         * All three exported PNGs come from the same Photoshop canvas:
-         * 3675 x 3487 px at 600 DPI.
-         * Keeping them as identical full-canvas layers preserves their
-         * Photoshop coordinates on the website.
-         */
         .hero-artboard {
             position: relative;
             width: min(100%, 720px);
@@ -316,12 +311,6 @@
             z-index: 1;
         }
 
-        /*
-         * The title uses the full Photoshop canvas.
-         * The artifact pair is deliberately scaled as ONE stack so the
-         * medallion and its painted-on shine stay perfectly registered.
-         * The shine itself never receives the rotation transform.
-         */
         .artifact-stack {
             position: absolute;
             left: 50%;
@@ -378,14 +367,6 @@
             outline: none;
         }
 
-        /*
-         * The shine is a fixed painted highlight, so it NEVER receives
-         * hover scaling or rotation.
-         *
-         * The moving artifact receives only the visual effects that belong
-         * to the artifact itself. Removing hover/activation scaling keeps
-         * shine.png registered with the Photoshop artwork.
-         */
         .hero-artboard.hovered .hero-medallion-layer {
             filter: drop-shadow(0 0 12px rgba(210, 154, 57, 0.95));
         }
@@ -395,9 +376,6 @@
             filter: drop-shadow(0 0 16px rgba(89, 229, 214, 0.98));
         }
 
-        /* Instruction + email popup are anchored inside the artboard, directly
-         * beneath the artifact. They are absolutely positioned so opening the
-         * email field never moves the medallion, title, or navigation. */
         .artifact-portal {
             position: absolute;
             left: 50%;
@@ -507,12 +485,13 @@
 
             .header-panel {
                 display: flex;
-                flex-direction: column-reverse;
+                flex-direction: column; /* FIXED: Changed column-reverse to normal column stack */
                 text-align: center;
                 padding: 30px 20px;
                 gap: 25px;
                 min-height: 0;
             }
+            
             .header-left {
                 max-width: 100%;
                 align-items: center;
@@ -577,27 +556,19 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Header Row Section -->
         <div class="header-panel">
             <div class="header-left">
-                <!-- Main Comic Logo Layout Anchor -->
                 <div class="hero-artboard" aria-label="Waters Of Yersu title and artifact">
-                    <!-- Full-canvas Photoshop export: title + title glow -->
                     <img src="headline-logo.png" alt="Waters Of Yersu" class="hero-layer hero-title-layer">
 
-                    <!-- Full-canvas Photoshop exports: artifact + fixed painted shine -->
                     <div class="artifact-stack" aria-label="Interactive Yersu artifact">
                         <img src="runic-medallion.png" alt="" class="hero-medallion-layer">
                         
-
-                        <!-- Transparent clickable zone, independent of the image layers -->
                         <button type="button" id="artifactBtn" class="hero-artifact-hitbox"
                                 title="Click to activate artifact"
                                 aria-label="Activate artifact"></button>
                     </div>
 
-                    <!-- Instruction + email popup stay physically under the artifact.
-                         Absolute positioning keeps them out of the normal flex flow. -->
                     <div class="artifact-portal">
                         <div class="artifact-instruction-text">Activate the artifact to reach Yersu</div>
 
@@ -610,24 +581,19 @@
                 </div>
                 <p>Official Page (Under Construction)</p>
                 
-                <!-- Gold Kindle Notification Alert (Static Text Only) -->
                 <div class="kindle-promo">ISSUE 1 AND 2 ARE LIVE ON GUMROAD FOR A LIMITED TIME</div>
                 
-                <!-- Compact Checkout Navigation Badges -->
                 <div class="icon-bar">
-                    <!-- Amazon Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkAmazon" class="icon-link amazon-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">BUY FROM AMAZON KINDLE</span>
                     </div>
 
-                    <!-- Gumroad Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkGumroad" class="icon-link gumroad-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">READ ISSUE 1 & 2 FOR FREE ON GUMROAD FOR A LIMITED TIME!</span>
                     </div>
 
-                    <!-- GlobalComix Medallion Component -->
                     <div class="custom-tooltip-wrapper">
                         <a href="#" id="topLinkGlobalComix" class="icon-link globalcomix-btn" target="_blank"></a>
                         <span class="yersu-tooltip-text">READ ON GLOBAL COMIX HERE!</span>
@@ -636,9 +602,9 @@
                     <a href="#" id="topLinkDiscord" class="icon-link" title="Discord" target="_blank">D</a>
                     <a href="#" id="topLinkContact" class="icon-link" title="Contact">?</a>
                 </div>
+            </div>
         </div>
 
-        <!-- New Reader Informational Box Panel -->
         <div class="info-panel">
             <ul>
                 <li>You can read the comics for <strong>FREE</strong> on Gumroad. It requires an email address: simply enter your email, select "<strong>$0</strong>" at checkout, and continue.</li>
@@ -648,8 +614,6 @@
             <p>The corresponding navigation icons are located above. I hope you enjoy the journey!</p>
         </div>
 
-        <!-- 5-Column True Native Embed YouTube Player Grid -->
-        <!-- Video URLs are assigned directly in the iframe src attributes so the embeds do not depend on the URL-routing script. -->
         <div class="video-panel">
             <div class="video-card">
                 <iframe id="vidEmbed1" src="https://www.youtube.com/embed/YaLCYzmp5LM" title="Yersu Teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
@@ -667,13 +631,10 @@
                 <iframe id="vidEmbed5" src="https://www.youtube.com/embed/MyZd_Buecq8" title="Teaser 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen="true"></iframe>
             </div>
         </div>
-
     </div>
 
-    <!-- Central URL Routing System -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Securely grab elements or provide fallbacks to prevent fatal script halts
             const getUrl = (id) => {
                 const el = document.getElementById(id);
                 return el ? el.innerText.trim() : "";
@@ -692,7 +653,6 @@
             const v4 = getUrl("urlVid4");
             const v5 = getUrl("urlVid5");
 
-            // Safely inject them into your layout elements automatically
             if(document.getElementById("topLinkAmazon")) document.getElementById("topLinkAmazon").href = amazonUrl;
             if(document.getElementById("topLinkGumroad")) document.getElementById("topLinkGumroad").href = gumroadUrl;
             if(document.getElementById("topLinkGlobalComix")) document.getElementById("topLinkGlobalComix").href = globalComixUrl;
@@ -742,14 +702,6 @@
         }
     </script>
 
-    <!--
-    =======================================================================
-                   CENTRAL MASTER URL DIRECTORY
-    =======================================================================
-    Highlight the plain text content inside the <span> nodes below and 
-    replace with your real deep links to fill the whole app ecosystem!
-    =======================================================================
-    -->
     <div style="display: none !important;" aria-hidden="true">
         <span id="urlAmazon">https://www.amazon.com/author/kultigin</span>
         <span id="urlGumroad">https://watersofyersu.gumroad.com/</span>
